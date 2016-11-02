@@ -10,8 +10,11 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "connect-multiparty": "^2.0.0",
     "ejs": "2.4.1",
-    "express": "4.13.3"
+    "express": "4.13.3",
+    "form-data": "^2.1.1",
+    "request": "^2.76.0"
   },
   "repository": {
     "type": "git",
