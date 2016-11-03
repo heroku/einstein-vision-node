@@ -6,6 +6,7 @@ var https       = require('https');
 var request     = require('request');
 var querystring = require('querystring');
 var cloudinary  = require('cloudinary');
+var path        = require('path')
 
 var app                 = express();
 var multipartMiddleware = multipart();
@@ -23,21 +24,31 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+
 app.post('/file-upload', multipartMiddleware, function(req, res) {
   //console.log(req.files);
   // don't forget to delete all req.files when done 
+  var filePath = req.files.file.path;
+  var fileExt = path.extname(filePath);
 
-  fs.readFile(req.files.file.path,'base64', function (err, data) {
+  fs.readFile(filePath,'base64', function (err, data) {
     if (err) {
       return console.log(err);
     }
+
+    cloudinary.uploader.upload(
+      'data:image/'+fileExt+';base64,'+data,
+      function(result) { 
+        console.log('cloudinary result: ', result) 
+      }
+    );
     // console.log(data);
     var formData = {
       modelId: process.env.METAMIND_MODELID || 'GeneralImageClassifier',
       sampleBase64Content : data
     }
     var options = {
-        uri: 'https://api.metamind.io/v1/vision/predict',
+        url: 'https://api.metamind.io/v1/vision/predict',
         method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + process.env.METAMIND_TOKEN,
