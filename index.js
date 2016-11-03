@@ -53,43 +53,13 @@ app.post('/file-upload', multipartMiddleware, function(req, res) {
       }
       console.log('status code', httpResponse.statusCode);
       console.log('headers', httpResponse.headers);
-      console.log('Upload successful!  Server responded with:', body);
+      console.log('Server Response:', body);
+      if(httpResponse.statusCode == 200){
+        res.status(200).send(body);
+      }else{
+        res.status(httpResponse.statusCode).send(body);
+      }
     });
-    // console.log(data);
-    // 'sampleBase64Content' : data,
-    // 'sampleLocation' : 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Matterhorn_Riffelsee_2005-06-11.jpg',
-    /*
-    var post_data = querystring.stringify({
-      'sampleBase64Content' : data,
-      'modelId': 'GeneralImageClassifier'
-    });
-
-    var options = {
-        hostname: 'api.metamind.io',
-        path: '/v1/vision/predict',
-        port: 443,
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + process.env.METAMIND_TOKEN,
-          'Content-Type': 'multipart/form-data',
-          'Content-Length': Buffer.byteLength(post_data),
-          'Cache-Control': 'no-cache'
-        }
-    };
-
-    var req = https.request(options, function(res) {
-        console.log("statusCode: ", res.statusCode);
-        console.log("headers: ", res.headers);
-
-        res.on('data', function(d) {
-            console.log('Response: ' + d);
-        });
-    });
-
-    req.write(post_data);
-    console.log('new image uploaded! Sending to metamind...',req);
-    req.end();
-    */
 
   });
 });

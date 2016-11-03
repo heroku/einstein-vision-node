@@ -34,4 +34,7 @@
   margin:0px auto;
   margin-top:40px;
 }
+#total-progress{
+  opacity:0;
+}
 

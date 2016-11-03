@@ -6,20 +6,21 @@
 
 <body>
 
-  <div id="dropZone" style="margin:0px auto;width:300px;">
+  <div id="dropZone" style="margin:0px auto;width:300px;text-align:center;">
     <form action="/file-upload"
           class="dropzone"
           id="metamindUpload">
       <i style="font-size:300px;cursor:pointer;" class="material-icons dz-message">photo_camera</i>
-    </form>
-    <button id="clear" class="form-control">Clear</button>
+    </form>    
+    <img src="/static/EinsteinAtom.png"/>
+    <div class="fileupload-process">
+      <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress=""></div>
+      </div>
+    </div>
   </div>
-  <script>
-  Dropzone.options.metamindUpload = {
-    uploadMultiple:false,
-    maxFiles:1,
-    acceptedFiles:".png,.jpg,.jpeg,.pgm"
-  }
-  </script>
+  <div style="width:800px;margin:auto;">
+    <% include ../partials/preview.ejs %>
+  </div>
 </body>
 </html>
