@@ -5,6 +5,7 @@ var fs          = require('fs');
 var https       = require('https');
 var request     = require('request');
 var querystring = require('querystring');
+var cloudinary  = require('cloudinary');
 
 var app                 = express();
 var multipartMiddleware = multipart();
@@ -25,6 +26,7 @@ app.get('/', function(request, response) {
 app.post('/file-upload', multipartMiddleware, function(req, res) {
   //console.log(req.files);
   // don't forget to delete all req.files when done 
+
   fs.readFile(req.files.file.path,'base64', function (err, data) {
     if (err) {
       return console.log(err);
