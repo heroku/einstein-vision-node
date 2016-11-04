@@ -10,6 +10,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "cloudinary": "^1.4.4",
     "connect-multiparty": "^2.0.0",
     "ejs": "2.4.1",
     "express": "4.13.3",
