@@ -31,7 +31,7 @@ app.post('/file-upload', multipartMiddleware, function(req, res) {
     }
     // console.log(data);
     var formData = {
-      modelId: 'GeneralImageClassifier',
+      modelId: process.env.METAMIND_MODELID || 'GeneralImageClassifier',
       sampleBase64Content : data
     }
     var options = {
