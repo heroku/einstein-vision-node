@@ -5,6 +5,8 @@ var fs          = require('fs');
 var https       = require('https');
 var request     = require('request');
 var querystring = require('querystring');
+var cloudinary  = require('cloudinary');
+var path        = require('path')
 
 var app                 = express();
 var multipartMiddleware = multipart();
@@ -22,45 +24,67 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+
 app.post('/file-upload', multipartMiddleware, function(req, res) {
   //console.log(req.files);
   // don't forget to delete all req.files when done 
-  fs.readFile(req.files.file.path,'base64', function (err, data) {
+  var filePath = req.files.file.path;
+  var fileExt = path.extname(filePath);
+
+  fs.readFile(filePath,'base64', function (err, data) {
     if (err) {
       return console.log(err);
     }
-    // console.log(data);
-    var formData = {
-      modelId: process.env.METAMIND_MODELID || 'GeneralImageClassifier',
-      sampleBase64Content : data
-    }
-    var options = {
-        uri: 'https://api.metamind.io/v1/vision/predict',
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + process.env.METAMIND_TOKEN,
-          'Content-Type': 'multipart/form-data',
-          'Connection': 'keep-alive',
-          'Cache-Control': 'no-cache'
 
-        },
-        formData:formData
-    }
-    
-    request.post(options, function optionalCallback(err, httpResponse, body) {
-      if (err) {
-        return console.error('upload failed:', err);
-      }
-      console.log('status code', httpResponse.statusCode);
-      console.log('headers', httpResponse.headers);
-      console.log('Server Response:', body);
-      if(httpResponse.statusCode == 200){
-        res.status(200).send(body);
-      }else{
-        res.status(httpResponse.statusCode).send(body);
-      }
-    });
+    cloudinary.uploader.upload(
+      'data:image/'+fileExt+';base64,'+data,
+      function(result) { 
+        if(result.error) {
+          console.error('upload to cloudinary fialed',result.error);
+          res.status(result.error.http_code).send(result.error);
+          return;
+        }
+        console.log('cloudinary result: ', result)
+        var resizedImgUrl = result.eager[0].url;
+        // console.log(data);
+        // sampleBase64Content : data,
+        var formData = {
+          modelId: process.env.METAMIND_MODELID || 'GeneralImageClassifier',
+          sampleLocation : resizedImgUrl
+        }
+        var options = {
+            url: 'https://api.metamind.io/v1/vision/predict',
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + process.env.METAMIND_TOKEN,
+              'Content-Type': 'multipart/form-data',
+              'Connection': 'keep-alive',
+              'Cache-Control': 'no-cache'
 
+            },
+            formData:formData
+        }
+        request.post(options, function optionalCallback(err, httpResponse, body) {
+          if (err) {
+            console.error('upload to metamind failed:', err);
+            res.status(err.statusCode).send(err);
+          }
+          console.log('status code', httpResponse.statusCode);
+          console.log('headers', httpResponse.headers);
+          console.log('Server Response:', body);
+          if(httpResponse.statusCode == 200){
+            res.status(200).send(body);
+          }else{
+            res.status(httpResponse.statusCode).send(body);
+          }
+        });
+      },{
+        eager: {
+          width: 500, 
+          crop: "limit"
+        }
+      }
+    );
   });
 });
 
