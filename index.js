@@ -40,8 +40,8 @@ app.post('/file-upload', multipartMiddleware, function(req, res) {
       'data:image/'+fileExt+';base64,'+data,
       function(result) { 
         if(result.error) {
-          console.error('upload to cloudinary fialed',result.error);
-          res.status(result.error.http_code).send(result.error);
+          console.error('upload to cloudinary failed',result.error);
+          res.status(500).send(JSON.stringify(result.error));
           return;
         }
         console.log('cloudinary result: ', result)
@@ -79,6 +79,7 @@ app.post('/file-upload', multipartMiddleware, function(req, res) {
           }
         });
       },{
+        //cloudinary options for image resizing on first req
         eager: {
           width: 500, 
           crop: "limit"
@@ -86,6 +87,7 @@ app.post('/file-upload', multipartMiddleware, function(req, res) {
       }
     );
   });
+    return;
 });
 
 app.listen(app.get('port'), function() {

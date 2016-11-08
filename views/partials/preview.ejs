@@ -1,69 +1,12 @@
-<!-- HTML heavily inspired by http://blueimp.github.io/jQuery-File-Upload/ -->
-
-
-<div class="table table-striped" class="files" id="previews">
-  <div class="media file-row" id="template">
-    <div class="media-left">
-      <span class="preview">
-        <img class="media-object" data-dz-thumbnail />
-      </span>
+<div id="previews" class="row files">
+  <div class="file-row" id="template">
+    <div class="col-md-6">
+      <img class="img-responsive preview" style="" data-dz-thumbnail />
     </div>
-    <div class="media-body">
-      <h4 class="media-heading name" data-dz-name>Media heading</h4>
+    <div class="col-md-6">
+      <h4 class="name" data-dz-name></h4>
       <table id="MetamindResults" class="table"></table>
-      <strong class="error text-danger" data-dz-errormessage></strong>
+      <p class="error text-danger" data-dz-errormessage></p>
     </div>
   </div>
 </div>
-
-<script>
-
-
-// Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-var previewNode = document.querySelector("#template");
-previewNode.id = "";
-var previewTemplate = previewNode.parentNode.innerHTML;
-previewNode.parentNode.removeChild(previewNode);
-
-Dropzone.options.metamindUpload = {
-    uploadMultiple:false,
-    acceptedFiles:".png,.jpg,.jpeg,.pgm",
-    previewTemplate: previewTemplate,
-    previewsContainer: "#previews",
-    init: function() {
-      this.on("sending", function(file) { 
-        this.removeAllFiles();
-        document.querySelector("#total-progress").style.opacity = "1";
-        console.log('sending file to metamind!'); 
-      });
-      this.on("uploadprogress", function(file,progress,bytesSent) { 
-        console.log(progress + '%','bytes sent:' + bytesSent);
-        document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
-      });
-      this.on("success", function(file, response) { 
-        document.querySelector("#total-progress").style.opacity = "0";
-        console.log('file uploaded: ', file); 
-        var jsonobj = JSON.parse(response);
-        console.log('Metamind Response: ', jsonobj);
-        parseJSON(jsonobj);
-      });
-    }
-  }
-  
-  Dropzone.totaluploadprogress = function(progress) {
-  document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
-  }
-
-  function parseJSON(data){
-    var table = document.getElementById("MetamindResults");
-    data.probabilities.forEach(function(e){
-      var row = table.insertRow();
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      cell1.innerHTML = e.label;
-      cell2.innerHTML = e.probability;
-    });
-  }
-  
-
-</script>

@@ -11,4 +11,7 @@ Set the config var:
 
 `METAMIND_TOKEN=<your_token>`
 
-Upload an image and see what Einstein thinks the image is. 
+The app will default to the General Image identification model supplied by metamind. If you create your own model you can use it by setting the config var:
+
+`METAMIND_MODEL=<your_modelID>`
+

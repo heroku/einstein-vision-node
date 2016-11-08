@@ -5,14 +5,13 @@
 </head>
 
 <body>
-
-  <div id="dropZone" style="margin:0px auto;width:300px;text-align:center;">
+  <div id="dropZone" style="margin:0px auto;text-align:center;">
     <form action="/file-upload"
           class="dropzone"
           id="metamindUpload">
-      <i style="font-size:300px;cursor:pointer;" class="material-icons dz-message">photo_camera</i>
+          <div class="dz-message"></div>
     </form>    
-    <img src="/static/EinsteinAtom.png"/>
+    <img id="einstein" src="/static/EinsteinAtom.png"/>
     <div class="fileupload-process">
       <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
         <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress=""></div>
@@ -22,5 +21,63 @@
   <div style="width:800px;margin:auto;">
     <% include ../partials/preview.ejs %>
   </div>
+  <script>
+    var previewNode = document.querySelector("#template");
+    previewNode.id = "";
+    var previewTemplate = previewNode.parentNode.innerHTML;
+    previewNode.parentNode.removeChild(previewNode);
+
+  
+
+
+    Dropzone.options.metamindUpload = {
+        uploadMultiple:false,
+        acceptedFiles:".png,.jpg,.jpeg,.pgm",
+        previewTemplate: previewTemplate,
+        previewsContainer: "#previews",
+        thumbnailWidth: null,
+        thumbnailHeight: null,
+        init: function() {
+          this.on("sending", function(file) { 
+            this.removeAllFiles();
+            document.querySelector("#total-progress").style.opacity = "1";
+            console.log('sending file to metamind!'); 
+            document.getElementById("metamindUpload").style.height = "100px";
+            document.getElementById("metamindUpload").style.width = "100px";
+            //document.getElementById("einstein").style.display = "block";
+          });
+          this.on("uploadprogress", function(file,progress,bytesSent) { 
+            console.log(progress + '%','bytes sent:' + bytesSent);
+            document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+          });
+          this.on("success", function(file, response) { 
+            document.querySelector("#total-progress").style.opacity = "0";
+            console.log('file uploaded: ', file); 
+            var jsonobj = JSON.parse(response);
+            console.log('Metamind Response: ', jsonobj);
+            parseJSON(jsonobj);
+          });
+        }
+      }
+      
+      Dropzone.totaluploadprogress = function(progress) {
+        document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+      }
+
+      function parseJSON(data){
+        var table = document.getElementById("MetamindResults");
+        data.probabilities.forEach(function(e){
+          var row   = table.insertRow();
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          cell1.innerHTML = e.label;
+          cell2.innerHTML = e.probability;
+        });
+      }
+
+      function startOver(){
+        document.getElementById("metamindUpload").style.display = "block";
+      }
+  </script>
 </body>
 </html>

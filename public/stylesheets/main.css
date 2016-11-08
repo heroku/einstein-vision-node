@@ -28,13 +28,60 @@
 #file-input{
   display:none;
 }
-#preview{
-  width:200px;
-  height:200px;
+.preview{
   margin:0px auto;
-  margin-top:40px;
+  margin-bottom:40px;
+}
+.fileupload-process{
+  margin:0px auto;
+  max-width:500px;
 }
 #total-progress{
   opacity:0;
 }
+
+#einstein {
+  display:none;
+  margin: 0px auto;
+}
+
+#template {
+  
+}
+
+
+#metamindUpload{
+    background-position: center;
+    max-width: 500px;
+    height:500px;
+    width:70%;
+    background-size: cover;
+    background: url(/static/PoisonOakCamera.svg) no-repeat;
+    margin: 0px auto;
+    cursor: pointer;
+    -webkit-transition: width 2s height 2s; /* Safari */
+    transition: width 2s height 2s;
+
+}
+
+@media (max-width: 600px) {
+  #metamindUpload {
+    height:400px;
+  }
+}
+
+@media (max-width: 500px) {
+  #metamindUpload {
+    height:350px;
+  }
+}
+
+@media (max-width: 400px) {
+  #metamindUpload {
+    height:300px;
+  }
+}
+
+
+
 
