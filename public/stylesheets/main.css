@@ -57,6 +57,7 @@
     max-width: 500px;
     height:500px;
     width:70%;
+    margin-top: 20px;
     background-size: cover;
     background: url(/static/metamindIcon.svg) no-repeat;
     margin: 0px auto;
