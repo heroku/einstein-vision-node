@@ -1,17 +1,30 @@
 # metamind-image-identifier
-Heroku Node app - upload an image to Metamind. 
+Heroku Node app - Image Classification with Metamind. 
 
-Clone or download then:
+##Setup
 
-`npm install`
+Clone or download the project and install dependencies:
 
-Generate a token here: http://docs.metamind.io/docs/what-you-need-to-call-api
+```
+npm install
+```
 
-Set the config var:
+Sign up for a metamind account and generate a JWT token:
 
-`METAMIND_TOKEN=<your_token>`
+http://docs.metamind.io/docs/what-you-need-to-call-api
+
+Once you have a JWT token Set the config var:
+
+`heroku config:set -a <appname> METAMIND_TOKEN=<your_jwt_token>`
 
 The app will default to the General Image identification model supplied by metamind. If you create your own model you can use it by setting the config var:
 
-`METAMIND_MODEL=<your_modelID>`
+`heroku config:set -a <appname> METAMIND_MODEL=<your_modelID>`
+
+##Images
+Image resizing is handled by Cloudinary. 
+
+`heroku addons:create -a <appname> cloudinary`
+
+
 
