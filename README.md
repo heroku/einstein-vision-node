@@ -1,9 +1,9 @@
 # metamind-image-identifier
-Image Classification with Metamind.
+Image Classification with Salesforce Metamind.
 
 ## Setup ##
 
-Sign up for a metamind account and generate a JWT token:
+Sign up for a Salesforce Metamind account and generate a JWT token:
 
 http://docs.metamind.io/docs/what-you-need-to-call-api
 
@@ -23,13 +23,13 @@ npm install
 Set the config var:
 
 ```
-heroku config:set -a <appname> METAMIND_TOKEN=<your_jwt_token>
+heroku config:set -a <$appName> METAMIND_TOKEN=<your_jwt_token>
 ```
 
 The app will default to the General Image identification model supplied by metamind. If you create your own model you can use it by setting the config var:
 
 ```
-heroku config:set -a <appname> METAMIND_MODEL=<your_modelID>
+heroku config:set -a <$appName> METAMIND_MODEL=<your_modelID>
 ```
 
 ### Images ###

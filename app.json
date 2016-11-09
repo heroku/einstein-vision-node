@@ -16,7 +16,7 @@
   "addons":[
     "cloudinary",
     {
-      "plan":"Starter"
+      "plan":"starter"
     }
   ],
   "buildpacks": [
