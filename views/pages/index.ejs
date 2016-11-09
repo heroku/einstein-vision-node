@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  <div style="width:800px;margin:auto;">
+  <div style="max-width:800px;margin:auto;">
     <% include ../partials/preview.ejs %>
   </div>
   <script>
@@ -38,18 +38,14 @@
           this.on("sending", function(file) { 
             this.removeAllFiles();
             document.querySelector("#total-progress").style.opacity = "1";
-            console.log('sending file to metamind!'); 
             scaleImageDown();
           });
           this.on("uploadprogress", function(file,progress,bytesSent) { 
-            console.log(progress + '%','bytes sent:' + bytesSent);
             document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
           });
           this.on("success", function(file, response) { 
-            document.querySelector("#total-progress").style.opacity = "0";
-            console.log('file uploaded: ', file); 
+            document.querySelector("#total-progress").style.opacity = "0"; 
             var jsonobj = JSON.parse(response);
-            console.log('Metamind Response: ', jsonobj);
             parseJSON(jsonobj);
           });
         }
@@ -60,11 +56,12 @@
       }
 
       function parseJSON(data){
-        var table = document.getElementById("MetamindResults");
+        const table = document.getElementById("MetamindResults");
+        var row,cell1,cell2;
         data.probabilities.forEach(function(e){
-          var row   = table.insertRow();
-          var cell1 = row.insertCell(0);
-          var cell2 = row.insertCell(1);
+          row   = table.insertRow();
+          cell1 = row.insertCell(0);
+          cell2 = row.insertCell(1);
           cell1.innerHTML = e.label;
           cell2.innerHTML = e.probability;
         });

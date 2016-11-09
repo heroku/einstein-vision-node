@@ -7,10 +7,12 @@
   "image": "heroku/nodejs",
   "env":{
     "METAMIND_MODELID": {
-      "description":"Optional - Your Metamind Model ID."
+      "description":"Optional - Your Metamind Model ID.",
+      "required":false
     },
     "METAMIND_TOKEN": {
-      "description":"Required - Your Metamind JWT Token"
+      "description":"Required - Your Metamind JWT Token",
+      "required":true
     }
   },
   "addons":[
