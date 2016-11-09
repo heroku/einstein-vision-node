@@ -19,8 +19,7 @@ Note:
 * `$jwt_token` represents your jwt token you generated above. 
 
 ```
-git clone \
-  https://github.com/trevorscott/metamind-image-identifier.git 
+git clone https://github.com/trevorscott/metamind-image-identifier.git 
 
 cd metamind-image-identifier
 
