@@ -35,6 +35,8 @@
 .fileupload-process{
   margin:0px auto;
   max-width:500px;
+  margin-top:20px;
+  margin-bottom:20px;
 }
 #total-progress{
   opacity:0;
@@ -59,9 +61,16 @@
     background: url(/static/PoisonOakCamera.svg) no-repeat;
     margin: 0px auto;
     cursor: pointer;
-    -webkit-transition: width 2s height 2s; /* Safari */
-    transition: width 2s height 2s;
+    -webkit-transition: all 2s ease-in-out; /* Safari */
+    transition:all 2s ease-in-out ;
 
+}
+
+#metamindUpload:hover {
+    transform: scale(.9);
+    -webkit-transform: scale(.9);
+    -o-transform: scale(.9); 
+    -moz-transform: scale(.9);
 }
 
 @media (max-width: 600px) {

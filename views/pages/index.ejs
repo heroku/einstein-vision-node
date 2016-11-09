@@ -27,9 +27,6 @@
     var previewTemplate = previewNode.parentNode.innerHTML;
     previewNode.parentNode.removeChild(previewNode);
 
-  
-
-
     Dropzone.options.metamindUpload = {
         uploadMultiple:false,
         acceptedFiles:".png,.jpg,.jpeg,.pgm",
@@ -42,9 +39,7 @@
             this.removeAllFiles();
             document.querySelector("#total-progress").style.opacity = "1";
             console.log('sending file to metamind!'); 
-            document.getElementById("metamindUpload").style.height = "100px";
-            document.getElementById("metamindUpload").style.width = "100px";
-            //document.getElementById("einstein").style.display = "block";
+            scaleImageDown();
           });
           this.on("uploadprogress", function(file,progress,bytesSent) { 
             console.log(progress + '%','bytes sent:' + bytesSent);
@@ -77,6 +72,15 @@
 
       function startOver(){
         document.getElementById("metamindUpload").style.display = "block";
+      }
+
+      function scaleImageDown(){
+        const e = document.getElementById("metamindUpload")
+        for(var i = 500;i>100;i--) {
+          e.style.height   = i+"px";
+          e.style.maxWidth = i+"px";
+        }
+        
       }
   </script>
 </body>

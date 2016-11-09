@@ -1,6 +1,8 @@
 # metamind-image-identifier
 Heroku Node app - Image Classification with Metamind. 
 
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 ##Setup
 
 Clone or download the project and install dependencies:
@@ -25,6 +27,8 @@ The app will default to the General Image identification model supplied by metam
 Image resizing is handled by Cloudinary. 
 
 `heroku addons:create -a <appname> cloudinary`
+
+Image uploading implemented with Dropzone.js
 
 
 
