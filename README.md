@@ -23,20 +23,20 @@ npm install
 Set the config var:
 
 ```
-heroku config:set -a <$appName> METAMIND_TOKEN=<your_jwt_token>
+heroku config:set -a <your_appname> METAMIND_TOKEN=<your_jwt_token>
 ```
 
 The app will default to the General Image identification model supplied by metamind. If you create your own model you can use it by setting the config var:
 
 ```
-heroku config:set -a <$appName> METAMIND_MODEL=<your_modelID>
+heroku config:set -a <your_appname> METAMIND_MODEL=<your_modelID>
 ```
 
 ### Images ###
 Image resizing is handled by Cloudinary. 
 
 ```
-heroku addons:create -a <appname> cloudinary
+heroku addons:create -a <your_appname> cloudinary
 ```
 
 Image uploading implemented with Dropzone.js
