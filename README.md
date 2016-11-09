@@ -42,4 +42,10 @@ heroku addons:create -a <appname> cloudinary
 Image uploading implemented with Dropzone.js
 
 
+## Run Locally
 
+```
+heroku local
+```
+
+Defaults to localhost:5000

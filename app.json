@@ -7,21 +7,16 @@
   "image": "heroku/nodejs",
   "env":{
     "METAMIND_MODELID": {
-      "description":"Your Metamind Model ID"
+      "description":"Optional - Your Metamind Model ID."
     },
     "METAMIND_TOKEN": {
-      "description":"Your Metamind JWT Token"
+      "description":"Required - Your Metamind JWT Token"
     }
   },
   "addons":[
     "cloudinary",
     {
       "plan":"starter"
-    }
-  ],
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
     }
   ]
 }
