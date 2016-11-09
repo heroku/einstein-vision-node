@@ -1,5 +1,5 @@
 # metamind-image-identifier
-Heroku Node app - Image Classification with Metamind. 
+Image Classification with Metamind. 
 
 ##Setup
 
