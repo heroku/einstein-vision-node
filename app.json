@@ -1,8 +1,27 @@
 {
   "name": "Metamind Image Identifier",
-  "description": "Basic node.js image uploader connected with Metamind",
-  "repository": "https://github.com/heroku/node-js-getting-started",
-  "logo": "http://node-js-sample.herokuapp.com/node.svg",
-  "keywords": ["node", "express", "static"],
-  "image": "heroku/nodejs"
+  "description": "Upload an image to metamind",
+  "repository": "https://github.com/trevorscott/metamind-image-identifier",
+  "logo": "http://image-identifier.herokuapp.com/static/EinsteinAtom.png",
+  "keywords": ["node", "express", "metamind"],
+  "image": "heroku/nodejs",
+  "env":{
+    "METAMIND_MODELID": {
+      "description":"Your Metamind Model ID"
+    },
+    "METAMIND_TOKEN": {
+      "description":"Your Metamind JWT Token"
+    }
+  },
+  "addons":[
+    "cloudinary",
+    {
+      "plan":"Starter"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
 }
