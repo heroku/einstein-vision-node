@@ -16,9 +16,9 @@ Once you have a JWT token use the button below to deploy or follow instructions 
 
 How to install and deploy without the deploy button above. 
 
-* Note:
-** `$app` represents your chosen name for your heroku metamind app.
-** `jwt_token` represents your jwt token you generated above. 
+Note:
+* `$app` represents your chosen name for your heroku metamind app.
+* `$jwt_token` represents your jwt token you generated above. 
 
 ```
 git clone \
@@ -34,5 +34,5 @@ heroku config:set METAMIND_TOKEN=$jwt_token
 The app will default to the General Image identification model supplied by Salesforce Metamind. If you create your own model you can use it by setting the config var:
 
 ```
-heroku config:set -a $app METAMIND_MODEL=<your_modelID>
+heroku config:set METAMIND_MODELID=<your_modelID>
 ```
