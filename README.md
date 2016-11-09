@@ -7,14 +7,12 @@ Sign up for a Salesforce Metamind account and generate a JWT token:
 
 http://docs.metamind.io/docs/what-you-need-to-call-api
 
-Once you have a JWT token use the button below to deploy or follow instructions to set deploy manually.
+Once you have a JWT token use the button below to deploy your app to Heroku.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 
 ## Manual Setup ##
-
-How to install and deploy without the deploy button above. 
 
 Note:
 * `$app` represents your chosen name for your heroku metamind app.
