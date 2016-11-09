@@ -14,38 +14,25 @@ Once you have a JWT token use the button below to deploy or follow instructions 
 
 ## Manual Setup ##
 
-Clone or download this repo and then:
+How to install and deploy without the deploy button above. 
+
+* Note:
+** `$app` represents your chosen name for your heroku metamind app.
+** `jwt_token` represents your jwt token you generated above. 
 
 ```
-npm install
+git clone \
+  https://github.com/trevorscott/metamind-image-identifier.git 
+
+cd metamind-image-identifier
+
+heroku create $app
+heroku addons:create cloudinary:starter
+heroku config:set METAMIND_TOKEN=$jwt_token
 ```
 
-Set the config var:
+The app will default to the General Image identification model supplied by Salesforce Metamind. If you create your own model you can use it by setting the config var:
 
 ```
-heroku config:set -a <your_appname> METAMIND_TOKEN=<your_jwt_token>
+heroku config:set -a $app METAMIND_MODEL=<your_modelID>
 ```
-
-The app will default to the General Image identification model supplied by metamind. If you create your own model you can use it by setting the config var:
-
-```
-heroku config:set -a <your_appname> METAMIND_MODEL=<your_modelID>
-```
-
-### Images ###
-Image resizing is handled by Cloudinary. 
-
-```
-heroku addons:create -a <your_appname> cloudinary
-```
-
-Image uploading implemented with Dropzone.js
-
-
-## Run Locally
-
-```
-heroku local
-```
-
-Defaults to localhost:5000
