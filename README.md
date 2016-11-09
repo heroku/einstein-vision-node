@@ -1,13 +1,15 @@
 # metamind-image-identifier
 Image Classification with Salesforce Metamind.
 
-## Setup ##
+## Prerequisites ##
 
 Sign up for a Salesforce Metamind account and generate a JWT token:
 
 http://docs.metamind.io/docs/what-you-need-to-call-api
 
-Once you have a JWT token use the button below to deploy your app to Heroku.
+Once you have a JWT token use the button below or follow instructions for manual setup to deploy your app to Heroku.
+
+## Setup ##
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
