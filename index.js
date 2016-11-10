@@ -1,16 +1,17 @@
-var express     = require('express');
-var fs          = require('fs');
-var multipart   = require('connect-multiparty');
-var fs          = require('fs');
-var https       = require('https');
-var request     = require('request');
-var querystring = require('querystring');
-var cloudinary  = require('cloudinary');
-var path        = require('path')
+const express     = require('express');
+const fs          = require('fs');
+const multipart   = require('connect-multiparty');
+const https       = require('https');
+const request     = require('request');
+const rp          = require('request-promise');
+const querystring = require('querystring');
+const cloudinary  = require('cloudinary');
+const path        = require('path')
+const Episode7    = require('episode-7');
+const fsp         = require('fs-promise');
 
 var app                 = express();
 var multipartMiddleware = multipart();
-
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -24,62 +25,82 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
-
 app.post('/file-upload', multipartMiddleware, function(req, res) {
-  //console.log(req.files);
-  // don't forget to delete all req.files when done 
   var filePath = req.files.file.path;
-  var fileExt = path.extname(filePath);
+  var fileExt  = path.extname(filePath);
+  Episode7.run(sendImageToMetamind, filePath,fileExt)
+    .then( predictions => res.status(200).send(predictions))
+    .catch( error => console.error(error))
+});
 
-  fs.readFile(filePath,'base64', function (err, data) {
-    if (err) {
-      return console.log(err);
-    }
+var server = app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
+if(!process.env.METAMIND_TOKEN) {
+  console.log("No Metamind Token provided. Shutting down.")
+  server.close();
+}
+
+function* sendImageToMetamind(filePath,fileExt){
+  // Wrap side-effects with Episode 7's `call`
+  let data = yield Episode7.call(
+    readUserFile,
+    filePath
+  );
+
+  let cloudinaryResult = yield Episode7.call(
+    cloudinaryResizeImage,
+    fileExt,
+    data,
+    500
+  );
+
+  let resizedImgUrl = cloudinaryResult.eager[0].url;
+
+  let formData = {
+    modelId: process.env.METAMIND_MODELID || 'GeneralImageClassifier',
+    sampleLocation : resizedImgUrl
+  }
+  let options = {
+      url: 'https://api.metamind.io/v1/vision/predict',
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + process.env.METAMIND_TOKEN,
+        'Content-Type': 'multipart/form-data',
+        'Connection': 'keep-alive',
+        'Cache-Control': 'no-cache'
+
+      },
+      formData:formData
+  }
+
+  let metamindResult = yield Episode7.call(
+    queryMetamind,
+    options
+  );
+
+  return metamindResult;
+}
+
+function readUserFile(filePath){
+  return fsp.readFile(filePath,'base64').then(data => data);
+}
+
+
+function cloudinaryResizeImage(fileExt,data,width){
+  return new Promise(function (fulfill,reject) {
     cloudinary.uploader.upload(
-      'data:image/'+fileExt+';base64,'+data,
-      function(result) { 
+      'data:image/'+fileExt+';base64,'+data, 
+      function(result){
         if(result.error) {
           console.error('upload to cloudinary failed',result.error);
-          res.status(500).send(JSON.stringify(result.error));
-          return;
+          reject(result.error);
+        }else {
+          fulfill(result);
         }
-        console.log('cloudinary result: ', result)
-        var resizedImgUrl = result.eager[0].url;
-        // console.log(data);
-        // sampleBase64Content : data,
-        var formData = {
-          modelId: process.env.METAMIND_MODELID || 'GeneralImageClassifier',
-          sampleLocation : resizedImgUrl
-        }
-        var options = {
-            url: 'https://api.metamind.io/v1/vision/predict',
-            method: 'POST',
-            headers: {
-              'Authorization': 'Bearer ' + process.env.METAMIND_TOKEN,
-              'Content-Type': 'multipart/form-data',
-              'Connection': 'keep-alive',
-              'Cache-Control': 'no-cache'
-
-            },
-            formData:formData
-        }
-        request.post(options, function optionalCallback(err, httpResponse, body) {
-          if (err) {
-            console.error('upload to metamind failed:', err);
-            res.status(err.statusCode).send(err);
-          }
-          console.log('status code', httpResponse.statusCode);
-          console.log('headers', httpResponse.headers);
-          console.log('Server Response:', body);
-          if(httpResponse.statusCode == 200){
-            res.status(200).send(body);
-          }else{
-            res.status(httpResponse.statusCode).send(body);
-          }
-        });
-      },{
-        //cloudinary options for image resizing on first req
+      },
+      {
         eager: {
           width: 500, 
           crop: "limit"
@@ -87,11 +108,10 @@ app.post('/file-upload', multipartMiddleware, function(req, res) {
       }
     );
   });
-    return;
-});
+}
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+function queryMetamind(options){
+  return rp(options).then(body=>body);
+}
 
 

@@ -13,9 +13,13 @@
     "cloudinary": "^1.4.4",
     "connect-multiparty": "^2.0.0",
     "ejs": "2.4.1",
+    "episode-7": "^1.1.0",
     "express": "4.13.3",
     "form-data": "^2.1.1",
-    "request": "^2.76.0"
+    "fs-promise": "^1.0.0",
+    "fs-readfile-promise": "^3.0.0",
+    "request": "^2.76.0",
+    "request-promise": "^4.1.1"
   },
   "repository": {
     "type": "git",
