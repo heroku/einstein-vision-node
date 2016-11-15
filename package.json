@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Image Identifier with Salesforce Metamind",
   "engines": {
-    "node": "5.9.1"
+    "node": "6.9.1"
   },
   "main": "index.js",
   "scripts": {
