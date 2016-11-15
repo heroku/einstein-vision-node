@@ -11,8 +11,16 @@
       "required":false
     },
     "METAMIND_TOKEN": {
-      "description":"Required - Your Metamind JWT Token",
-      "required":true
+      "description":"Optional - Your Metamind JWT Token. If set, this will override the apps token regeneration functionality.",
+      "required":false
+    },
+    "METAMIND_ACCOUNT_ID":{
+      "description":"Your Metamind email address or add-on ID",
+      "required":false
+    },
+    "METAMIND_PRIVATE_KEY":{
+      "description":"Your Metamind private rsa key",
+      "required":false
     }
   },
   "addons":[
