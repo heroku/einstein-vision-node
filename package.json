@@ -1,13 +1,13 @@
 {
   "name": "node-js-getting-started",
-  "version": "0.2.5",
-  "description": "A sample Node.js app using Express 4",
+  "version": "1.0.0",
+  "description": "Image Identifier with Salesforce Metamind",
   "engines": {
     "node": "5.9.1"
   },
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node lib/run"
   },
   "dependencies": {
     "cloudinary": "^1.4.4",
@@ -18,17 +18,21 @@
     "form-data": "^2.1.1",
     "fs-promise": "^1.0.0",
     "fs-readfile-promise": "^3.0.0",
-    "request": "^2.76.0",
+    "jsonwebtoken": "^7.1.9",
+    "request": "^2.78.0",
     "request-promise": "^4.1.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/trevorscott/metamind-image-identifier"
   },
   "keywords": [
     "node",
     "heroku",
-    "express"
+    "express",
+    "salesforce",
+    "metamind",
+    "salesforce metamind"
   ],
   "license": "MIT"
 }
