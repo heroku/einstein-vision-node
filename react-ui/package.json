@@ -1,0 +1,23 @@
+{
+  "name": "metamind-image-identifier-ui",
+  "version": "0.1.0",
+  "private": false,
+  "devDependencies": {
+    "react-scripts": "0.7.0"
+  },
+  "dependencies": {
+    "classnames": "2.2.5",
+    "react": "15.3.2",
+    "react-dom": "15.3.2",
+    "react-dropzone": "3.7.3",
+    "react-motion": "^0.4.5",
+    "superagent": "2.3.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:5000"
+}

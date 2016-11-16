@@ -1,5 +1,5 @@
 {
-  "name": "node-js-getting-started",
+  "name": "metamind-image-identifier",
   "version": "1.0.0",
   "description": "Image Identifier with Salesforce Metamind",
   "engines": {
@@ -7,12 +7,16 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node lib/run"
+    "start": "node lib/run",
+    "postinstall": "if [ \"$NODE_ENV\" = production ]; then cd react-ui/ && npm install --only=dev && npm install && npm run build; fi"
   },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
   "dependencies": {
     "cloudinary": "^1.4.4",
     "connect-multiparty": "^2.0.0",
-    "ejs": "2.4.1",
     "episode-7": "^1.1.0",
     "express": "4.13.3",
     "form-data": "^2.1.1",
@@ -24,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/trevorscott/metamind-image-identifier"
+    "url": "https://github.com/trevorscott/metamind-image-identifier.git"
   },
   "keywords": [
     "node",
@@ -32,7 +36,7 @@
     "express",
     "salesforce",
     "metamind",
-    "salesforce metamind"
+    "react"
   ],
   "license": "MIT"
 }

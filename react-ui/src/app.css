@@ -1,0 +1,84 @@
+body {
+  background-color: #333;
+  color: #fff;
+  margin: 0;
+}
+
+h2, h3, p {
+  margin: 0.3rem;
+}
+
+
+.title {
+  margin: 0;
+  background-color: #222;
+}
+
+h1 {
+  text-align: left;
+  padding: 0.5rem 1rem 0.3rem;
+  margin: 0;
+  font-size: 1rem;
+  color: #999;
+}
+
+.app {
+  text-align: center;
+}
+  @media (min-width: 600px) {
+    .app {
+      margin-left: 17vw;
+      margin-right: 17vw;
+    }
+  }
+
+.app .dropzone {
+  margin: 2rem 2rem 1rem 2rem;
+}
+
+.app .status-message {
+  text-align: left;
+  height: 2rem;
+  line-height: 1.8rem;
+  margin: 0 2rem;
+  border-radius: 0.8rem;
+  padding: 0.1rem 1rem;
+  background-color: #222;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.app .status-message-visible {
+  opacity: 1;
+}
+
+.app .status-message-error {
+  background-color: #600;
+  color: #fcc;
+}
+
+.app .image-preview {
+  margin: 1rem 2rem 2rem 2rem;
+  transition: max-height 2s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+  color: #fff;
+  background-color: #000;
+  border-radius: 0.8rem;
+}
+.app .image-preview img {
+  width: 100%;
+}
+
+.app .image-preview-visible {
+  max-height: 500px;
+}
+
+.app .about-this-app {
+  margin: 1rem 2rem;
+  padding: 0.1rem 1rem;
+  color: #ccc;
+  background: #222;
+  border-radius: 0.8rem;
+  text-align: left;
+}

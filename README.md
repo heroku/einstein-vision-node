@@ -1,13 +1,14 @@
-# metamind-image-identifier
-Image Classification with Salesforce Metamind.
+# Metamind Image Identifier
+Predictive Vision with [Salesforce Metamind](http://metamind.io).
 
-**This is a work in progress, things are changing quickly.**
+🚧🚧🚧 **This is a work in progress. Things are changing quickly.**
 
 ## Prerequisites ##
 
-To use this app you will need either a metamind username and a jwt private key or a jwt token. For more information:
+To use this app you will need either:
 
-http://docs.metamind.io/docs/what-you-need-to-call-api
+* a Metamind account ID and a JWT private key, or
+* a JWT token (see: [API docs](http://docs.metamind.io/docs/what-you-need-to-call-api))
 
 ## Setup ##
 
@@ -44,4 +45,37 @@ The app will default to the General Image identification model supplied by Sales
 heroku config:set METAMIND_MODEL_ID=$modelId
 ```
 
+## Development
 
+### Local environment
+
+```bash
+echo 'METAMIND_TOKEN=$jwt_token' > .env
+```
+
+### Dependencies
+
+```bash
+npm install
+npm install --prefix react-ui
+```
+
+### Run the Node server
+
+```bash
+heroku local
+```
+
+### Run the React UI
+
+React app with hot-reloading via [create-react-app](https://github.com/facebookincubator/create-react-app) is served from `react-ui/`; automatically proxies backend requests to the local Node server.
+
+```bash
+npm start --prefix react-ui
+```
+
+…and in a separate terminal, start the API server:
+
+```bash
+heroku local
+```

@@ -1,0 +1,18 @@
+.predictions .prediction {
+  overflow: hidden;
+  margin: 1rem 2rem;
+  padding: 0.1rem 1rem;
+  color: #fff;
+  background: #000;
+  border-radius: 0.8rem;
+  text-align: left;
+}
+
+.predictions .prediction .probability {
+  float: right;
+  text-align: 'right';
+}
+
+.predictions .prediction .alt-labels {
+  font-size: 0.8rem;
+}
