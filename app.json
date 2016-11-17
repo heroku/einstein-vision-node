@@ -1,7 +1,7 @@
 {
   "name": "Metamind Image Identifier",
   "description": "Upload an image to metamind",
-  "repository": "https://github.com/trevorscott/metamind-image-identifier",
+  "repository": "https://github.com/heroku/metamind-image-identifier",
   "logo": "http://image-identifier.herokuapp.com/static/EinsteinAtom.png",
   "keywords": ["node", "express", "metamind"],
   "image": "heroku/nodejs",

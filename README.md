@@ -23,7 +23,7 @@ Note:
 * `$metamind_private_key` represents your metamind rsa private key.
 
 ```
-git clone https://github.com/trevorscott/metamind-image-identifier.git 
+git clone https://github.com/heroku/metamind-image-identifier.git
 
 cd metamind-image-identifier
 
