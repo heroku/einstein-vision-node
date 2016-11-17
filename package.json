@@ -7,7 +7,8 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node lib/run"
+    "start": "node lib/run",
+    "test": "ava"
   },
   "dependencies": {
     "cloudinary": "^1.4.4",
@@ -19,6 +20,7 @@
     "fs-promise": "^1.0.0",
     "fs-readfile-promise": "^3.0.0",
     "jsonwebtoken": "^7.1.9",
+    "pify": "^2.3.0",
     "request": "^2.78.0",
     "request-promise": "^4.1.1"
   },
@@ -34,5 +36,11 @@
     "metamind",
     "salesforce metamind"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "mock-fs": "^3.12.1",
+    "mountfs": "^0.4.2",
+    "rewire": "^2.5.2"
+  }
 }
