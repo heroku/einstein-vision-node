@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node lib/run",
-    "postinstall": "if [ \"$NODE_ENV\" = production ]; then cd react-ui/ && npm install --only=dev && npm install && npm run build; fi"
+    "postinstall": "if [ \"$NODE_ENV\" = production ]; then cd react-ui/ && npm install --only=dev && npm install && npm run build; fi",
+    "test": "ava"
   },
   "cacheDirectories": [
     "node_modules",
@@ -23,6 +24,7 @@
     "fs-promise": "^1.0.0",
     "fs-readfile-promise": "^3.0.0",
     "jsonwebtoken": "^7.1.9",
+    "pify": "^2.3.0",
     "request": "^2.78.0",
     "request-promise": "^4.1.1"
   },
@@ -38,5 +40,11 @@
     "metamind",
     "react"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "mock-fs": "^3.12.1",
+    "mountfs": "^0.4.2",
+    "rewire": "^2.5.2"
+  }
 }
