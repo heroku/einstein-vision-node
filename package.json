@@ -46,5 +46,8 @@
     "mock-fs": "^3.12.1",
     "mountfs": "^0.4.2",
     "rewire": "^2.5.2"
+  },
+  "ava":{
+    "files":["**/*.test.js", "!react-ui/**/*"]
   }
 }
