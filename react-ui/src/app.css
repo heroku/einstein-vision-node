@@ -1,5 +1,18 @@
+@font-face{
+  font-family: "sfs-regular";
+  src:url("/SalesforceSans-Regular.ttf");
+}
+
+@font-face{
+  font-family: "sfs-thin";
+  src:url("/SalesforceSans-Thin.ttf");
+}
+
+html,body,div,p,span {
+  font-family: "sfs-thin";
+}
+
 body {
-  background-color: #333;
   color: #fff;
   margin: 0;
 }
@@ -11,7 +24,19 @@ h2, h3, p {
 
 .title {
   margin: 0;
-  background-color: #222;
+  background-color: #07b;
+}
+
+.title::after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
+.intro{
+  font-size: 2rem;
+  line-height: 3rem;
+  text-align: center;
 }
 
 h1 {
@@ -19,21 +44,24 @@ h1 {
   padding: 0.5rem 1rem 0.3rem;
   margin: 0;
   font-size: 1rem;
-  color: #999;
+  color: #fff;
 }
 
 .app {
   text-align: center;
+  background-color:#fff;
 }
   @media (min-width: 600px) {
     .app {
+      /*
       margin-left: 17vw;
       margin-right: 17vw;
+      */
     }
   }
 
 .app .dropzone {
-  margin: 2rem 2rem 1rem 2rem;
+  margin: 6rem 2rem 1rem 2rem;
 }
 
 .app .status-message {
@@ -58,20 +86,20 @@ h1 {
 }
 
 .app .image-preview {
-  margin: 1rem 2rem 2rem 2rem;
   transition: max-height 2s ease-in-out;
-  max-height: 0;
-  overflow: hidden;
-  color: #fff;
-  background-color: #000;
-  border-radius: 0.8rem;
+  flex-grow:1;
 }
 .app .image-preview img {
-  width: 100%;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 500px;
+    max-height: 500px;
+    cursor:pointer;
 }
 
 .app .image-preview-visible {
-  max-height: 500px;
+  display:block;
+  margin: 1rem;
 }
 
 .app .about-this-app {
@@ -81,4 +109,27 @@ h1 {
   background: #222;
   border-radius: 0.8rem;
   text-align: left;
+}
+
+.result-wrapper{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.footer {
+  margin-top:3rem;
+  text-align: center;
+  width:100%;
+}
+
+.footer a {
+  display:inline-block;
+  margin:1rem;
+  color:#777;
+}
+
+.footer svg{
+  fill:white;
+  max-width:2rem;
 }

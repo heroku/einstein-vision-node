@@ -1,0 +1,38 @@
+Example `uploadResponse`:
+{
+  "probabilities": [
+    {
+      "label": "Heroku",
+      "probability": 0.99
+    },
+    {
+      "label": "infographic",
+      "probability": 0.85
+    },
+    {
+      "label": "street sign",
+      "probability": 0.65
+    },
+    {
+      "label": "digital clock",
+      "probability": 0.20473432540893555
+    },
+    {
+      "label": "odometer, hodometer, mileometer, milometer",
+      "probability": 0.12954171001911163
+    },
+    {
+      "label": "laptop, laptop computer",
+      "probability": 0.07063886523246765
+    },
+    {
+      "label": "cash machine, cash dispenser, automated teller machine, automatic teller machine, automated teller, automatic teller, ATM",
+      "probability": 0.05539492145180702
+    },
+    {
+      "label": "iPod",
+      "probability": 0.04827757552266121
+    }
+  ],
+  "object": "predictresponse"
+}

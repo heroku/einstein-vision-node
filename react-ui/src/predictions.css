@@ -1,3 +1,7 @@
+.predictions{
+  flex-grow:1;
+}
+
 .predictions .prediction {
   overflow: hidden;
   margin: 1rem 2rem;
