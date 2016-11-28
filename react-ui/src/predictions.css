@@ -1,5 +1,6 @@
 .predictions{
   flex-grow:1;
+  background:#fff;
 }
 
 .predictions .prediction {

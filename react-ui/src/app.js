@@ -29,11 +29,12 @@ class App extends Component {
       <div>
         <div className="title">
           <h1 className="intro">
-            Salesforce MetaMind Image Classification
+             Salesforce MetaMind 
+            <br/> <span className="demo-text">Image Classification Demo</span>  
           </h1>
         </div>
         <div className="app">
-          <Dropzone
+          {response || isProcessing ? null : <Dropzone
             accept={'image/png, image/jpeg'}
             multiple={false}
             onDrop={this.onDrop}
@@ -45,7 +46,7 @@ class App extends Component {
             activeClassName="dropzone-active"
             rejectClassName="dropzone-reject">
             <UploadTarget/>
-          </Dropzone>
+          </Dropzone>}
 
           
           <div className="result-wrapper">
@@ -53,33 +54,32 @@ class App extends Component {
               'image-preview',
               file != null ? 'image-preview-visible' : null)}>
             <Dropzone
-            accept={'image/png, image/jpeg'}
-            multiple={false}
-            onDrop={this.onDrop}
-            style={{}}
-            className={classNames(
-              'dropzone',
-              file != null ? 'dropzone-dropped' : null
-            )}
-            activeClassName="dropzone-active"
-            rejectClassName="dropzone-reject">
-                <img src={file && file.preview} style={{ display: 'block' }}/>
-              </Dropzone>
-                <div className="spinner-wrapper">
-                  {isProcessing
-                        ? <span><Spinner/></span>
-                        : null 
-                  }
-                  {isProcessing
-                    ? <div className="spinner-text">Analyzing Image...</div>
-                    : null
-                  }
-                  {
-                    uploadError
-                    ? uploadError
-                    :null
-                  }
-                </div>
+              accept={'image/png, image/jpeg'}
+              multiple={false}
+              onDrop={this.onDrop}
+              style={{}}
+              className={classNames(
+                'dropzone',
+                file != null ? 'dropzone-dropped' : null
+              )}
+              activeClassName="dropzone-active"
+              rejectClassName="dropzone-reject">
+              <img src={file && file.preview} style={{ display: 'block' }}/>
+              {!response || isProcessing ? null : 
+                <div className="prompt">Drop image here or tap to upload</div>
+              }
+            </Dropzone>
+            <div className="spinner-wrapper">
+              {isProcessing
+                ? <Spinner/>
+                : null}
+              {isProcessing
+                ? <div className="spinner-text">Analyzing Image...</div>
+                : null}
+              {uploadError
+                ? uploadError
+                :null}
+            </div>
 
                 {/*<div className={classNames(
                     'status-message',
@@ -101,7 +101,7 @@ class App extends Component {
         </div>
 
         <div className="footer">
-          <a href="http://http://metamind.io/">metamind.io</a>
+          <a href="http://metamind.io/">metamind.io</a>
           <a href="https://github.com/heroku/metamind-image-identifier" 
              target="_blank">github</a>
         </div>

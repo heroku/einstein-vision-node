@@ -2,7 +2,7 @@
 
 }
 .spinner-text{
-  color:#07b;
+  color:#fff;
   font-family: "sfs-regular";
 }
 
@@ -15,7 +15,7 @@
 }
 
 .spinner > div {
-  background-color: #07b;    
+  background-color: #fff;    
   margin: 0 3px 0 0;
   height: 100%;
   width: 6px;

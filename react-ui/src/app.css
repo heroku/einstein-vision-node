@@ -24,7 +24,7 @@ h2, h3, p {
 
 .title {
   margin: 0;
-  background-color: #07b;
+  /* background-color: #07b; */
 }
 
 .title::after {
@@ -41,15 +41,20 @@ h2, h3, p {
 
 h1 {
   text-align: left;
-  padding: 0.5rem 1rem 0.3rem;
+  padding: 1rem 0 1rem 0;
   margin: 0;
   font-size: 1rem;
-  color: #fff;
+  color: #333;
+}
+
+.demo-text {
+  color:#07b;
+  font-family:"sfs-regular";
 }
 
 .app {
   text-align: center;
-  background-color:#fff;
+  background-color:#07b;
 }
   @media (min-width: 600px) {
     .app {
@@ -61,7 +66,13 @@ h1 {
   }
 
 .app .dropzone {
-  margin: 6rem 2rem 1rem 2rem;
+  margin: 1rem 2rem 1rem 2rem;
+  padding: 2rem 0rem 2rem 0rem;
+}
+
+.result-wrapper .dropzone {
+  margin:0;
+  padding:0;
 }
 
 .app .status-message {
@@ -115,10 +126,14 @@ h1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  box-shadow: 1px 0px 11px -5px #777; 
+  /*border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;*/
 }
 
+
 .footer {
-  margin-top:3rem;
+  margin-top:1rem;
   text-align: center;
   width:100%;
 }
