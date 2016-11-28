@@ -52,6 +52,10 @@ heroku config:set METAMIND_MODEL_ID=$modelId
 ```bash
 echo 'METAMIND_TOKEN=$jwt_token' > .env
 ```
+or
+```
+export METAMIND_PRIVATE_KEY=$jwt_private_key
+```
 
 ### Dependencies
 
