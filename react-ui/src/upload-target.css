@@ -1,7 +1,13 @@
 .upload-target {
+  margin: 0px auto;
+  max-width: 350px;
   position: relative;
   cursor: pointer;
-  transition: transform 2s ease-in-out;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 0.25rem;
+  transition: transform 2s ease-in-out,
+              background .5s ease-in-out;
+
 }
 .upload-target:hover {
   transform: scale(.9);
@@ -13,44 +19,74 @@
     max-height 2s ease-in-out,
     transform 2s ease-in-out;
 }
+#Layer_1{
+  fill:#FFF;
+}
 
 .upload-target .prompt {
+  color: #777;
   position: absolute;
-  bottom: 8%;
-  padding-left: 8%;
-  text-align: left;
-  width: 30%;
-  color: #999;
+  bottom: 3%;
+  left: 0px;
+  right: 0px;
+  font-family:"sfs-regular";
   transition:
     opacity 0.2s ease-in-out,
+    color 2s ease-in-out,
     transform 2s ease-in-out;
 }
 .upload-target .frame {
-  fill: #999;
+  display:none;
+  fill: #000;
 }
 
-.dropzone-active .upload-target .prompt,
-.dropzone-active .upload-target .frame {
-  color: #0c0;
-  fill: #0c0;
+.dropzone-active .upload-target{
+   background:#0c0; 
 }
-.dropzone-reject .upload-target .prompt,
-.dropzone-reject .upload-target .frame {
-  color: #c00;
-  fill: #c00;
+.dropzone-active .upload-target .prompt {
+  color:white;
 }
 
+.dropzone-reject .upload-target{
+  background: #c00;
+}
+.dropzone-reject .upload-target .prompt {
+  color:white;
+}
+
+
+
+.dropzone-dropped .upload-target {
+  height:0px;
+  background: #444;
+}
 .dropzone-dropped .upload-target svg:hover {
   transform: scale(.9);
 }
 .dropzone-dropped .upload-target svg {
-  max-height: 100px;
+  /* display:none;  */
+  max-height: 1px;
+  opacity:0;
+  
 }
 .dropzone-dropped .upload-target .prompt {
-  opacity: 0;
+   opacity: 0; 
 }
 
-.upload-target .st0{fill:#3C83BA;}
+.dropzone-dropped .loading {
+  opacity:0;
+}
+.dropzone-dropped .loading {
+  opacity:1;
+}
+
+div.dropzone{
+    transition:
+    margin 0.2s ease-in-out,
+    transform 2s ease-in-out;
+}
+
+.upload-target .st0{fill:#07b;}
 .upload-target .st1{opacity:0.2;}
 .upload-target .st2{fill:#7D868C;}
 .upload-target .st3{fill:#161414;}

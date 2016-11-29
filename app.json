@@ -1,5 +1,5 @@
 {
-  "name": "Metamind Image Identifier",
+  "name": "Salesforce MetaMind Image Classification",
   "description": "Upload an image to metamind",
   "repository": "https://github.com/heroku/metamind-image-identifier",
   "logo": "http://image-identifier.herokuapp.com/static/EinsteinAtom.png",
@@ -7,19 +7,19 @@
   "image": "heroku/nodejs",
   "env":{
     "METAMIND_MODELID": {
-      "description":"Optional - Your Metamind Model ID.",
+      "description":"Optional - Your MetaMind Model ID.",
       "required":false
     },
     "METAMIND_TOKEN": {
-      "description":"Optional - Your Metamind JWT Token. If set, this will override the apps token regeneration functionality.",
+      "description":"Optional - Your MetaMind JWT Token. If set, this will override the apps token regeneration functionality.",
       "required":false
     },
     "METAMIND_ACCOUNT_ID":{
-      "description":"Your Metamind email address or add-on ID",
+      "description":"Your MetaMind email address or add-on ID",
       "required":false
     },
     "METAMIND_PRIVATE_KEY":{
-      "description":"Your Metamind private rsa key",
+      "description":"Your MetaMind private rsa key",
       "required":false
     }
   },

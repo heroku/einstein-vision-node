@@ -32,15 +32,15 @@ class Predictions extends Component {
             }
             const probability = prediction.probability;
             const percent = Math.round(probability * 100);
-            const blackLevel = 22 - Math.max(Math.sqrt(probability * 150), 0);
-            const whiteLevel = 100 - blackLevel * 1.6;
             const labels = prediction.label.split(/,\s*/);
+            let color = '#fff';
+            if (probability < .5) color = '#777';
             return (<div 
               className='prediction'
               key={`prediction-${i}`}
               style={Object.assign(style, {
-                color: `rgb(${whiteLevel}%,${whiteLevel}%,${whiteLevel}%)`,
-                backgroundColor: `rgb(${blackLevel}%,${blackLevel}%,${blackLevel}%)`
+                color: color,
+                backgroundColor: `rgba(0,119,187,${probability})`
               })}>
               <h2>{labels[0]} <span className="probability" title="Probability">{percent}%</span></h2>
               {labels[1] != null

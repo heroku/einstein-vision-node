@@ -1,4 +1,4 @@
-# Metamind Image Identifier
+# MetaMind Image Identifier
 Predictive Vision with [Salesforce Metamind](http://metamind.io).
 
 🚧🚧🚧 **This is a work in progress. Things are changing quickly.**
@@ -7,7 +7,7 @@ Predictive Vision with [Salesforce Metamind](http://metamind.io).
 
 To use this app you will need either:
 
-* a Metamind account ID and a JWT private key, or
+* a MetaMind account ID and a JWT private key, or
 * a JWT token (see: [API docs](http://docs.metamind.io/docs/what-you-need-to-call-api))
 
 ## Setup ##
