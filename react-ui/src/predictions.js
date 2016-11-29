@@ -32,11 +32,9 @@ class Predictions extends Component {
             }
             const probability = prediction.probability;
             const percent = Math.round(probability * 100);
-            const blackLevel = 22 - Math.max(Math.sqrt(probability * 150), 0);
-            const whiteLevel = 100 - blackLevel * 1.6;
             const labels = prediction.label.split(/,\s*/);
             let color = '#fff';
-            if(probability<.5) color = '#777';
+            if (probability < .5) color = '#777';
             return (<div 
               className='prediction'
               key={`prediction-${i}`}

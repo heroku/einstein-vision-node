@@ -1,6 +1,7 @@
 .predictions{
   flex-grow:1;
   background:#fff;
+  padding-top: 1rem;
 }
 
 .predictions .prediction {
@@ -9,7 +10,7 @@
   padding: 0.1rem 1rem;
   color: #fff;
   background: #000;
-  border-radius: 0.8rem;
+  border-radius: 6px;
   text-align: left;
 }
 

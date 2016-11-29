@@ -6,7 +6,7 @@
   background: rgba(255, 255, 255, 0.65);
   border-radius: 0.25rem;
   transition: transform 2s ease-in-out,
-              background 2s ease-in-out;
+              background .5s ease-in-out;
 
 }
 .upload-target:hover {
@@ -54,21 +54,11 @@
   color:white;
 }
 
-/*.dropzone-active .upload-target .prompt,
-.dropzone-active .upload-target .metamind-logo {
-  color: #0c0;
-  fill: #0c0;
-}
-.dropzone-reject .upload-target .prompt,
-.dropzone-reject .upload-target .metamind-logo {
-  color: #c00;
-  fill: #c00;
-}
-*/
 
 
 .dropzone-dropped .upload-target {
   height:0px;
+  background: #444;
 }
 .dropzone-dropped .upload-target svg:hover {
   transform: scale(.9);
@@ -94,10 +84,6 @@ div.dropzone{
     transition:
     margin 0.2s ease-in-out,
     transform 2s ease-in-out;
-}
-
-div.dropzone-dropped.dropzone {
-  margin: 1rem 2rem 1rem 2rem;
 }
 
 .upload-target .st0{fill:#07b;}

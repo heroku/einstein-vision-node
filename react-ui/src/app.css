@@ -23,8 +23,7 @@ h2, h3, p {
 
 
 .title {
-  margin: 0;
-  /* background-color: #07b; */
+  margin: 0 2rem;
 }
 
 .title::after {
@@ -55,24 +54,23 @@ h1 {
 .app {
   text-align: center;
   background-color:#07b;
+  transition: background 2s ease-in-out;
 }
-  @media (min-width: 600px) {
-    .app {
-      /*
-      margin-left: 17vw;
-      margin-right: 17vw;
-      */
-    }
-  }
-
-.app .dropzone {
-  margin: 1rem 2rem 1rem 2rem;
-  padding: 2rem 0rem 2rem 0rem;
+.app-with-image{
+  background-color: #444;
 }
 
-.result-wrapper .dropzone {
-  margin:0;
-  padding:0;
+.app .initial-dropzone {
+  margin: 0rem 2rem 1rem 2rem;
+  padding: 2rem 0rem 1rem 0rem;
+}
+
+.app-with-image .dropzone-active {
+   background:#0c0; 
+}
+
+.app-with-image .dropzone-reject {
+  background: #c00;
 }
 
 .app .status-message {
@@ -103,23 +101,15 @@ h1 {
 .app .image-preview img {
     margin: 0 auto;
     width: 100%;
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 400px;
+    max-height: 400px;
     cursor:pointer;
+    border-radius: 6px;
 }
 
 .app .image-preview-visible {
   display:block;
-  margin: 1rem;
-}
-
-.app .about-this-app {
-  margin: 1rem 2rem;
-  padding: 0.1rem 1rem;
-  color: #ccc;
-  background: #222;
-  border-radius: 0.8rem;
-  text-align: left;
+  margin: 2rem 2rem 2rem 2rem;
 }
 
 .result-wrapper{
@@ -127,10 +117,7 @@ h1 {
   flex-direction: row;
   flex-wrap: wrap;
   box-shadow: 1px 0px 11px -5px #777; 
-  /*border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;*/
 }
-
 
 .footer {
   margin-top:1rem;
@@ -142,9 +129,4 @@ h1 {
   display:inline-block;
   margin:1rem;
   color:#777;
-}
-
-.footer svg{
-  fill:white;
-  max-width:2rem;
 }
