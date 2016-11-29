@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Spinner from './spinner';
 import Dropzone from 'react-dropzone';
 import classNames from 'classnames';
-import superagent  from 'superagent';
-import Predictions  from './predictions';
-import UploadTarget  from './upload-target';
+import superagent from 'superagent';
 
 import './app.css';
+import Spinner from './spinner';
+import Predictions from './predictions';
+import UploadTarget from './upload-target';
 
 class App extends Component {
 

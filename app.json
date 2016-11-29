@@ -1,6 +1,6 @@
 {
   "name": "Salesforce MetaMind Image Classification",
-  "description": "Upload an image to metamind",
+  "description": "Predictive Vision with Salesforce MetaMind",
   "repository": "https://github.com/heroku/metamind-image-identifier",
   "logo": "http://image-identifier.herokuapp.com/static/EinsteinAtom.png",
   "keywords": ["node", "express", "metamind"],
