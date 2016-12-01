@@ -17,29 +17,24 @@ To use this app you will need either:
 
 ## Manual Setup ##
 
-Note:
-* `$app` represents your chosen name for your heroku metamind app.
-* `$metamind_account_id` represents your metamind email.
-* `$metamind_private_key` represents your metamind rsa private key.
-
 ```
 git clone https://github.com/heroku/metamind-image-identifier.git
 
 cd metamind-image-identifier
 
-heroku create $app
+heroku create $app_name
 heroku addons:create cloudinary:starter
 heroku config:set METAMIND_ACCOUNT_ID=$metamind_account_id
 heroku config:set METAMIND_PRIVATE_KEY=$metamind_private_key
 ```
 
-If you would like to override the default functionality of the app and set your own token you can do so by simply setting the config var:
+If you provide an RSA Private Key the app takes care of authentication for you. If you don't proivde a private key you must provide a token yourself:
 
 ```
 heroku config:set METAMIND_TOKEN=$metamind_token
 ```
 
-The app will default to the General Image identification model supplied by Salesforce Metamind. If you create your own model you can use it by setting the config var:
+The app will default to the General Image identification model supplied by Salesforce MetaMind. If you create your own model you can use it by setting the config var:
 
 ```
 heroku config:set METAMIND_MODEL_ID=$modelId
