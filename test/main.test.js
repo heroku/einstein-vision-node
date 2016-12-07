@@ -1,12 +1,14 @@
 const test          = require('ava');
-const cloudinaryResizeImage   = require('../lib/cloudinary-resize-image');
 const fileUpload    = require('../lib/file-upload');
 const oAuthToken    = require('../lib/oauth-token');
 const queryMetamind = require('../lib/query-metamind');
 const readFile      = require('../lib/read-file');
+const analyzeFile   = require('../lib/analyze-file');
 const server        = require('../lib/server');
 const updateToken   = require('../lib/update-token');
+const cloudinaryResizeImage   = require('../lib/cloudinary-resize-image');
 const sendImageToMetamind   = require('../lib/send-image-to-metamind');
+
 const mainModule    = require('../');
 
 test('Exports `cloudinaryResizeImage`', t => {
@@ -27,6 +29,10 @@ test('Exports `queryMetamind`', t => {
 
 test('Exports `readFile`', t => {
   t.is(mainModule.readFile, readFile);
+});
+
+test('Exports `analyzeFile`', t => {
+  t.is(mainModule.analyzeFile, analyzeFile);
 });
 
 test('Exports `server`', t => {

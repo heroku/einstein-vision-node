@@ -1,7 +1,7 @@
 {
   "name": "metamind-image-identifier",
   "version": "1.0.0",
-  "description": "Salesforce MetaMind Image Classification",
+  "description": "Salesforce MetaMind Predictive Vision Demo App",
   "engines": {
     "node": "6.9.1"
   },

@@ -29,7 +29,7 @@ class App extends Component {
         <div className="title">
           <h1 className="intro">
              Salesforce MetaMind 
-            <br/> <span className="demo-text">Image Classification Demo</span>  
+            <br/> <span className="demo-text">Predictive Vision Demo</span>  
           </h1>
         </div>
         <div className={classNames(
