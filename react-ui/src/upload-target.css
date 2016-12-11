@@ -9,8 +9,12 @@
               background .5s ease-in-out;
 
 }
+
 .upload-target:hover {
   transform: scale(.9);
+}
+.upload-target .einstein {
+  display:none;
 }
 
 .upload-target svg {
@@ -19,6 +23,11 @@
     max-height 2s ease-in-out,
     transform 2s ease-in-out;
 }
+
+.upload-target .camera {
+  margin: 4rem;
+}
+
 #Layer_1{
   fill:#FFF;
 }
@@ -86,7 +95,7 @@ div.dropzone{
     transform 2s ease-in-out;
 }
 
-.upload-target .st0{fill:#07b;}
+.upload-target .st0{fill:#444;}
 .upload-target .st1{opacity:0.2;}
 .upload-target .st2{fill:#7D868C;}
 .upload-target .st3{fill:#161414;}

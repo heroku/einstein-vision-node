@@ -47,13 +47,14 @@ h1 {
 }
 
 .demo-text {
-  color:#07b;
+  color:#444;
   font-family:"sfs-regular";
 }
 
 .app {
   text-align: center;
-  background-color:#07b;
+  /*background-color:#07b;*/
+  background-color:#444;
   transition: background 2s ease-in-out;
 }
 .app-with-image{
