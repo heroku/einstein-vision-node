@@ -1,5 +1,5 @@
-# MetaMind Image Identifier
-Predictive Vision with [Salesforce Metamind](http://metamind.io).
+# Salesforce Predictive Vision Image Identifier
+Image Classification with the [Salesforce Predictive Vision API](http://metamind.io).
 
 🚧🚧🚧 **This is a work in progress. Things are changing quickly.**
 
@@ -7,7 +7,7 @@ Predictive Vision with [Salesforce Metamind](http://metamind.io).
 
 To use this app you will need either:
 
-* a MetaMind account ID and a JWT private key, or
+* a Salesforce Predictive Vision account ID and a JWT private key, or
 * a JWT token (see: [API docs](http://docs.metamind.io/docs/what-you-need-to-call-api))
 
 ## Setup ##
@@ -18,26 +18,26 @@ To use this app you will need either:
 ## Manual Setup ##
 
 ```
-git clone https://github.com/heroku/metamind-image-identifier.git
+git clone https://github.com/heroku/pvs-node.git
 
-cd metamind-image-identifier
+cd pvs-node
 
 heroku create $app_name
 heroku addons:create cloudinary:starter
-heroku config:set METAMIND_ACCOUNT_ID=$metamind_account_id
-heroku config:set METAMIND_PRIVATE_KEY=$metamind_private_key
+heroku config:set PREDICTIVE_SERVICES_ACCOUNT_ID=$PREDICTIVE_SERVICES_ACCOUNT_ID
+heroku config:set PREDICTIVE_SERVICES_PRIVATE_KEY=$PREDICTIVE_SERVICES_PRIVATE_KEY
 ```
 
 If you provide an RSA Private Key the app takes care of authentication for you. If you don't proivde a private key you must provide a token yourself:
 
 ```
-heroku config:set METAMIND_TOKEN=$metamind_token
+heroku config:set PREDICTIVE_SERVICES_TOKEN=$PREDICTIVE_SERVICES_TOKEN
 ```
 
-The app will default to the General Image identification model supplied by Salesforce MetaMind. If you create your own model you can use it by setting the config var:
+The app will default to the General Image identification model supplied by the Predictive Vision Service. If you create your own model you can use it by setting the config var:
 
 ```
-heroku config:set METAMIND_MODEL_ID=$modelId
+heroku config:set PREDICTIVE_VISION_MODEL_ID=$modelId
 ```
 
 ## Development
@@ -45,11 +45,11 @@ heroku config:set METAMIND_MODEL_ID=$modelId
 ### Local environment
 
 ```bash
-echo 'METAMIND_TOKEN=$jwt_token' > .env
+echo 'PREDICTIVE_SERVICES_TOKEN=$jwt_token' > .env
 ```
 or
 ```
-export METAMIND_PRIVATE_KEY=$jwt_private_key
+export PREDICTIVE_SERVICES_PRIVATE_KEY=$jwt_private_key
 ```
 
 ### Dependencies

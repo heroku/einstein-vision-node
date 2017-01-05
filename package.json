@@ -1,7 +1,7 @@
 {
-  "name": "metamind-image-identifier",
+  "name": "pvs-node",
   "version": "1.0.0",
-  "description": "Salesforce MetaMind Predictive Vision Demo App",
+  "description": "Salesforce Predictive Vision Service demo in Node.js",
   "engines": {
     "node": "6.9.1"
   },
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/metamind-image-identifier.git"
+    "url": "https://github.com/heroku/pvs-node.git"
   },
   "keywords": [
     "node",

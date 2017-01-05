@@ -5,8 +5,8 @@ const cloudinaryResizeImage = require('./lib/cloudinary-resize-image');
 const readFile              = require('./lib/read-file');
 const analyzeFile           = require('./lib/analyze-file');
 const oAuthToken            = require('./lib/oauth-token');
-const queryMetamind         = require('./lib/query-metamind');
-const sendImageToMetamind   = require('./lib/send-image-to-metamind');
+const queryVisionApi         = require('./lib/query-vision-api');
+const sendImageToVisionApi   = require('./lib/send-image-to-vision-api');
 
 module.exports = {
   server,
@@ -16,6 +16,6 @@ module.exports = {
   cloudinaryResizeImage,
   readFile,
   oAuthToken,
-  queryMetamind,
-  sendImageToMetamind
+  queryVisionApi,
+  sendImageToVisionApi
 }

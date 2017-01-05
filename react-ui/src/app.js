@@ -28,8 +28,7 @@ class App extends Component {
       <div>
         <div className="title">
           <h1 className="intro">
-             Salesforce MetaMind 
-            <br/> <span className="demo-text">Predictive Vision Demo</span>  
+             Salesforce Predictive Vision Demo
           </h1>
         </div>
         <div className={classNames(
@@ -86,8 +85,8 @@ class App extends Component {
         </div>
 
         <div className="footer">
-          <a href="http://metamind.io/">metamind.io</a>
-          <a href="https://github.com/heroku/metamind-image-identifier" 
+          <a href="http://metamind.io/">Predictive Vision API</a>
+          <a href="https://github.com/heroku/pvs-node" 
              target="_blank">github</a>
         </div>
       </div>

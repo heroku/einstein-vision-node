@@ -4,7 +4,7 @@ import { StaggeredMotion, spring } from 'react-motion';
 
 class Predictions extends Component {
   static propTypes = {
-    // The Metamind Predictions
+    // The Predictive Vision Predictions
     contents: React.PropTypes.array.isRequired
   }
 

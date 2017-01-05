@@ -1,13 +1,13 @@
 const test          = require('ava');
 const fileUpload    = require('../lib/file-upload');
 const oAuthToken    = require('../lib/oauth-token');
-const queryMetamind = require('../lib/query-metamind');
+const queryVisionApi = require('../lib/query-vision-api');
 const readFile      = require('../lib/read-file');
 const analyzeFile   = require('../lib/analyze-file');
 const server        = require('../lib/server');
 const updateToken   = require('../lib/update-token');
 const cloudinaryResizeImage   = require('../lib/cloudinary-resize-image');
-const sendImageToMetamind   = require('../lib/send-image-to-metamind');
+const sendImageToVisionApi   = require('../lib/send-image-to-vision-api');
 
 const mainModule    = require('../');
 
@@ -23,8 +23,8 @@ test('Exports `oAuthToken`', t => {
   t.is(mainModule.oAuthToken, oAuthToken);
 });
 
-test('Exports `queryMetamind`', t => {
-  t.is(mainModule.queryMetamind, queryMetamind);
+test('Exports `queryVisionApi`', t => {
+  t.is(mainModule.queryVisionApi, queryVisionApi);
 });
 
 test('Exports `readFile`', t => {
@@ -43,6 +43,6 @@ test('Exports `updateToken`', t => {
   t.is(mainModule.updateToken, updateToken);
 });
 
-test('Exports `sendImageToMetamind`', t => {
-  t.is(mainModule.sendImageToMetamind, sendImageToMetamind);
+test('Exports `sendImageToVisionApi`', t => {
+  t.is(mainModule.sendImageToVisionApi, sendImageToVisionApi);
 });
