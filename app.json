@@ -1,25 +1,29 @@
 {
-  "name": "Salesforce MetaMind Predictive Vision Demo App",
-  "description": "Predictive Vision with Salesforce MetaMind's General Image Classifier",
-  "repository": "https://github.com/heroku/metamind-image-identifier",
+  "name": "Salesforce Predictive Vision Service demo in Node.js",
+  "description": "Image Classification with Salesforce's Predictive Vision API",
+  "repository": "https://github.com/heroku/pvs-node",
   "logo": "http://image-identifier.herokuapp.com/static/EinsteinAtom.png",
-  "keywords": ["node", "express", "metamind"],
+  "keywords": ["node", "express", "predictive vision service", "salesforce"],
   "image": "heroku/nodejs",
   "env":{
-    "METAMIND_MODELID": {
-      "description":"Optional - Your MetaMind Model ID.",
+    "PREDICTIVE_VISION_MODEL_ID": {
+      "description":"Optional - Your Predictive Vision Service Model ID.",
       "required":false
     },
-    "METAMIND_TOKEN": {
-      "description":"Optional - Your MetaMind JWT Token. If set, this will override the apps token regeneration functionality.",
+    "PREDICTIVE_SERVICES_URL": {
+      "description":"",
       "required":false
     },
-    "METAMIND_ACCOUNT_ID":{
-      "description":"Your MetaMind email address or add-on ID",
+    "PREDICTIVE_SERVICES_TOKEN": {
+      "description":"Optional - Your Predictive Services JWT Token. If set, this will override the apps token regeneration functionality.",
       "required":false
     },
-    "METAMIND_PRIVATE_KEY":{
-      "description":"Your MetaMind private rsa key",
+    "PREDICTIVE_SERVICES_ACCOUNT_ID":{
+      "description":"Your Predictive Services Account ID (email address or add-on ID)",
+      "required":false
+    },
+    "PREDICTIVE_SERVICES_PRIVATE_KEY":{
+      "description":"Your Predictive Services private rsa key",
       "required":false
     }
   },
