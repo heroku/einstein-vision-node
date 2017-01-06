@@ -7,7 +7,7 @@ Image Classification with the [Salesforce Predictive Vision API](http://metamind
 
 To use this app you will need either:
 
-* a Salesforce Predictive Vision account ID and a JWT private key, or
+* a Salesforce Predictive Vision Service account ID and a JWT private key, or
 * a JWT token (see: [API docs](http://docs.metamind.io/docs/what-you-need-to-call-api))
 
 ## Setup ##
