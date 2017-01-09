@@ -1,5 +1,5 @@
 {
-  "name": "Salesforce Predictive Vision Service demo in Node.js",
+  "name": "Predictive Vision Service demo",
   "description": "Image Classification with Salesforce's Predictive Vision API",
   "repository": "https://github.com/heroku/pvs-node",
   "logo": "http://image-identifier.herokuapp.com/static/EinsteinAtom.png",
