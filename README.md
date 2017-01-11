@@ -29,6 +29,23 @@ Once a Heroku app is deployed with the Predictive Services Add-on, you may use t
   heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $APP_NAME
   ```
 
+## Sharing a Custom Model
+
+Share an add-on containing custom-trained models between multiple apps by attaching the add-on:
+
+```bash
+# First, fetch the `predictive-services` add-on identifier from the original app.
+heroku addons --app $APP_NAME
+
+# Then, attach that add-on to another app.
+heroku addons:attach $ADD_ON_IDENTIFIER --app $OTHER_APP_NAME
+
+# Finally, set the custom model ID on the other app.
+heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $OTHER_APP_NAME
+```
+
+Background: when a Predictive Services add-on is created, it gets a new Predictive Services account. As custom models are created, they are scoped to that account. To share those models, you may attach the add-on to multiple apps.
+
 
 ## Source-based Deploy
 
