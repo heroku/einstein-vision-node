@@ -2,7 +2,7 @@
 
 Image classification with the [Salesforce Predictive Vision Service](http://docs.metamind.io/docs/what-is-the-predictive-vision-service).
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](?template=https://github.com/heroku/pvs-node/tree/use-addon)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/pvs-node/tree/use-addon)
 
 
 ## Using a Custom Model
