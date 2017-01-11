@@ -26,7 +26,7 @@ Once a Heroku app is deployed with the Predictive Services Add-on, you may use t
 1. Once trained, set the Heroku app to use the custom `$MODEL_ID`
 
   ```bash
-  heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $APP_NAME`
+  heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $APP_NAME
   ```
 
 
