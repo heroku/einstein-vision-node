@@ -71,16 +71,18 @@ Predictive Services Add-on sets three configuration variables to gain full acces
 
 The steps to access the API are:
 
-1. Exchange a JWT for an expiring oAuth token
-  * `${PREDICTIVE_SERVICES_URL}v1/oauth2/token`
+1. **Exchange a JWT for an expiring oAuth token**
+  * endpoint `${PREDICTIVE_SERVICES_URL}v1/oauth2/token`
   * payload includes `$PREDICTIVE_SERVICES_ACCOUNT_ID`
   * signed with `$PREDICTIVE_SERVICES_PRIVATE_KEY`
   * reference implementation in [lib/update-token.js](lib/update-token.js)
-2. Make API requests using the acquired oAuth token
-  * `${PREDICTIVE_SERVICES_URL}v1/vision/*`
+2. **Make API requests using the acquired oAuth token**
+  * endpoints `${PREDICTIVE_SERVICES_URL}v1/vision/*`
   * request Header `Authorization: Bearer ${token}`
   * detect status `401` for expired token, and refresh with step 1.
   * reference implementation in [lib/query-vision-api.js](lib/query-vision-api.js)
+
+An oAuth token may be manually acquired using [`jwt.sh` in MetaMind/api-utils](https://github.com/MetaMind/api-utils).
 
 
 ## Source-based Deploy
