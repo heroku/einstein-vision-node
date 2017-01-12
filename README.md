@@ -4,6 +4,18 @@ Image classification with the [Salesforce Predictive Vision Service](http://docs
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/pvs-node/tree/use-addon)
 
+## Selecting a Model
+
+[Pre-built models](http://docs.metamind.io/docs/use-pre-built-models) are provided to get started quickly. The model IDs are:
+
+* `GeneralImageClassifier`, the default for this app
+* `FoodImageClassifier`
+
+To set for an app:
+
+```bash
+heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $APP_NAME
+```
 
 ## Using a Custom Model
 
