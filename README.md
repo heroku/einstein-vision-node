@@ -13,13 +13,15 @@ Image classification with the [Salesforce Predictive Vision Service](http://docs
 
 To set for an app:
 
+✏️ *Replace each `$VARIABLE` in the following command with a specific value: the desired model ID & Heroku app name.*
+
 ```bash
 heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $APP_NAME
 ```
 
 ## Using a Custom Model
 
-Once a Heroku app is deployed with the Predictive Services Add-on, you may use the PS API from your local command-line to create a custom model and upload training images.
+Once a Heroku app is deployed with the Predictive Services Add-on, use its credentials to create a custom model and upload training images.
 
 1. Fetch your credentials from the app
 
@@ -56,7 +58,29 @@ heroku addons:attach $ADD_ON_IDENTIFIER --app $OTHER_APP_NAME
 heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $OTHER_APP_NAME
 ```
 
-Background: when a Predictive Services add-on is created, it gets a new Predictive Services account. As custom models are created, they are scoped to that account. To share those models, you may attach the add-on to multiple apps.
+👓 **Background** When a Predictive Services add-on is created, it gets a new Predictive Services account. As custom models are created, they are scoped to that account. To share those models, you may attach the add-on to multiple apps.
+
+
+## API Authentication
+
+Predictive Services Add-on sets three configuration variables to gain full access to its API:
+
+* `PREDICTIVE_SERVICES_URL`
+* `PREDICTIVE_SERVICES_ACCOUNT_ID`
+* `PREDICTIVE_SERVICES_PRIVATE_KEY`
+
+The steps to access the API are:
+
+1. Exchange a JWT for an expiring oAuth token
+  * `${PREDICTIVE_SERVICES_URL}v1/oauth2/token`
+  * payload includes `$PREDICTIVE_SERVICES_ACCOUNT_ID`
+  * signed with `$PREDICTIVE_SERVICES_PRIVATE_KEY`
+  * reference implementation in [lib/update-token.js](lib/update-token.js)
+2. Make API requests using the acquired oAuth token
+  * `${PREDICTIVE_SERVICES_URL}v1/vision/*`
+  * request Header `Authorization: Bearer ${token}`
+  * detect status `401` for expired token, and refresh with step 1.
+  * reference implementation in [lib/query-vision-api.js](lib/query-vision-api.js)
 
 
 ## Source-based Deploy
