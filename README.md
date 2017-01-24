@@ -1,27 +1,27 @@
-# Salesforce Predictive Vision, Image Identifier demo
+# Salesforce Predictive Vision Service Image Identifier Demo App
 
-Image classification with the [Salesforce Predictive Vision Service](http://docs.metamind.io/docs/what-is-the-predictive-vision-service).
+This Node.js sample app uses the Predictive Vision Service add-on and enables you to send an image into an existing model and get a prediction back. Click this link to learn more about the [Salesforce Predictive Vision Service](http://docs.metamind.io/docs/what-is-the-predictive-vision-service). Click the Deploy to Heroku button below to deploy this app to Heroku and create a new Predictive Services account.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/pvs-node/tree/use-addon)
 
-## Selecting a Model
+## Select a Model
 
-[Pre-built models](http://docs.metamind.io/docs/use-pre-built-models) are provided to get started quickly. The model IDs are:
+[Pre-built models](http://docs.metamind.io/docs/use-pre-built-models) let you get started quickly with the service. You can use these models instead of creating your own custom model. When you call the service, you pass in the ID of the model. The model IDs are:
 
-* `GeneralImageClassifier`, the default for this app
-* `FoodImageClassifier`
+* `GeneralImageClassifier`—The default for this app. This model is used to classify a variety of images and contains thousands of labels.
+* `FoodImageClassifier`—This model is used to classify different foods and contains over 500 labels.
 
-To set for an app:
+To set the model ID for an app:
 
-✏️ *Replace each `$VARIABLE` in the following command with a specific value: the desired model ID & Heroku app name.*
+✏️ *Replace each `$VARIABLE` in the following command with a specific value: the desired model ID and the Heroku app name.*
 
 ```bash
 heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $APP_NAME
 ```
 
-## Using a Custom Model
+## Create a Custom Model
 
-Once a Heroku app is deployed with the Predictive Services Add-on, use its credentials to create a custom model and upload training images.
+Once a Heroku app is deployed with the Predictive Services add-on, use the app credentials to create a custom model and upload training images.
 
 1. Fetch your credentials from the app
 
@@ -43,9 +43,9 @@ Once a Heroku app is deployed with the Predictive Services Add-on, use its crede
   heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $APP_NAME
   ```
 
-## Sharing a Custom Model
+## Share a Custom Model
 
-Share an add-on containing custom-trained models between multiple apps by attaching the add-on:
+Share an add-on containing custom-trained models between multiple apps by attaching the add-on to each app:
 
 ```bash
 # First, fetch the `predictive-services` add-on identifier from the original app.
@@ -63,29 +63,30 @@ heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $OTHER_APP_NAME
 
 ## API Authentication
 
-Predictive Services Add-on sets three configuration variables to gain full access to its API:
+The Predictive Services add-on sets three configuration variables to provide full access to its API:
 
-* `PREDICTIVE_SERVICES_URL`
-* `PREDICTIVE_SERVICES_ACCOUNT_ID`
-* `PREDICTIVE_SERVICES_PRIVATE_KEY`
+* `PREDICTIVE_SERVICES_URL`—The Predictive Vision Service API endpoint.
+* `PREDICTIVE_SERVICES_ACCOUNT_ID`—Your account ID.
+* `PREDICTIVE_SERVICES_PRIVATE_KEY`—An RSA key in PEM format.
 
 The steps to access the API are:
 
-1. **Exchange a JWT for an expiring oAuth token**
+1. **Exchange a JWT for an expiring OAuth token**
   * endpoint `${PREDICTIVE_SERVICES_URL}v1/oauth2/token`
   * payload includes `$PREDICTIVE_SERVICES_ACCOUNT_ID`
   * signed with `$PREDICTIVE_SERVICES_PRIVATE_KEY`
   * reference implementation in [lib/update-token.js](lib/update-token.js)
+  
 2. **Make API requests using the acquired oAuth token**
   * endpoints `${PREDICTIVE_SERVICES_URL}v1/vision/*`
   * request Header `Authorization: Bearer ${token}`
   * detect status `401` for expired token, and refresh with step 1.
   * reference implementation in [lib/query-vision-api.js](lib/query-vision-api.js)
 
-An oAuth token may be manually acquired using [`jwt.sh` in MetaMind/api-utils](https://github.com/MetaMind/api-utils).
+An OAuth token may be manually acquired using [`jwt.sh` in MetaMind/api-utils](https://github.com/MetaMind/api-utils).
 
 
-## Source-based Deploy
+## Source-Based Deploy
 
 Instead of using the Deploy to Heroku button, you may deploy your own forked/customized version of the source code.
 
@@ -103,7 +104,7 @@ git push heroku master
 heroku open
 ```
 
-The app will default to the General Image identification model supplied by the Predictive Vision Service. If you [create your own model](#using-a-custom-model) you can use it by setting the config var:
+The app defaults to the General Image identification model supplied by the Predictive Vision Service. If you [create your own model](#using-a-custom-model) you can use it by setting the config var:
 
 ```
 heroku config:set PREDICTIVE_VISION_MODEL_ID=$modelId
@@ -112,7 +113,7 @@ heroku config:set PREDICTIVE_VISION_MODEL_ID=$modelId
 
 ## Development
 
-### Run the API server
+### Run the API Server
 
 The simplest way to work locally is to use the config vars of an existing Heroku app with the *Predictive Services Add-on*. Use the **Deploy to Heroku** button (above) to provision such a dev app.
 
@@ -150,7 +151,7 @@ npm test
 ```
 
 
-### Manual environment config
+### Manual Environment Config
 
 ```bash
 cp .env.sample .env
@@ -163,5 +164,5 @@ export PREDICTIVE_SERVICES_PRIVATE_KEY=`cat path/to/private.key`
 heroku local
 ```
 
-If you provide a Private Key the app takes care of JWT authentication for you. If you don't provide a private key you must provide a token yourself as `PREDICTIVE_SERVICES_TOKEN`.
+If you provide a private key, the app takes care of JWT authentication for you. If you don't provide a private key you must provide a token yourself as `PREDICTIVE_SERVICES_TOKEN`.
 
