@@ -1,6 +1,8 @@
-# Salesforce Predictive Vision Service Image Identifier Demo App
+# Salesforce Predictive Vision Service<br/>Image Identifier demo
 
-This Node.js sample app uses the Predictive Vision Service add-on and enables you to send an image into an existing model and get a prediction back. Click this link to learn more about the [Salesforce Predictive Vision Service](http://docs.metamind.io/docs/what-is-the-predictive-vision-service). Click the Deploy to Heroku button below to deploy this app to Heroku and create a new Predictive Services account.
+This Node.js sample app lets you upload an image to get predictions from the [Salesforce Predictive Vision Service](http://docs.metamind.io/docs/what-is-the-predictive-vision-service) [PVS] using the [Add-on](https://elements.heroku.com/addons/predictive-services).
+
+When deploying this app, a new PVS add-on will be created which includes a Predictive Services account.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/pvs-node/tree/use-addon)
 
@@ -8,8 +10,12 @@ This Node.js sample app uses the Predictive Vision Service add-on and enables yo
 
 [Pre-built models](http://docs.metamind.io/docs/use-pre-built-models) let you get started quickly with the service. You can use these models instead of creating your own custom model. When you call the service, you pass in the ID of the model. The model IDs are:
 
-* `GeneralImageClassifier`—The default for this app. This model is used to classify a variety of images and contains thousands of labels.
-* `FoodImageClassifier`—This model is used to classify different foods and contains over 500 labels.
+* `GeneralImageClassifier`—The default for this app.
+  * identify a variety of images
+  * contains thousands of labels
+* `FoodImageClassifier`
+  * identify different foods
+  * contains over 500 labels.
 
 To set the model ID for an app:
 
