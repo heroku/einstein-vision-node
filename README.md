@@ -1,4 +1,4 @@
-# Salesforce Predictive Vision Service<br/>Image Identifier demo
+# Salesforce Predictive Vision Service<br/>Image Identifier demo [![Build Status](https://travis-ci.org/heroku/pvs-node.svg?branch=master)](https://travis-ci.org/heroku/pvs-node)
 
 This Node.js sample app lets you upload an image to get predictions from the [Salesforce Predictive Vision Service](http://docs.metamind.io/docs/what-is-the-predictive-vision-service) [PVS] using the [Add-on](https://elements.heroku.com/addons/predictive-services).
 
