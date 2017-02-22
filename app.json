@@ -1,33 +1,17 @@
 {
   "name": "Predictive Vision Service demo",
-  "description": "Image Classification with Salesforce's Predictive Vision API",
+  "description": "Image Classification with Salesforce Predictive Vision Service",
   "repository": "https://github.com/heroku/pvs-node",
-  "logo": "http://image-identifier.herokuapp.com/static/EinsteinAtom.png",
   "keywords": ["node", "express", "predictive vision service", "salesforce"],
   "image": "heroku/nodejs",
   "env":{
     "PREDICTIVE_VISION_MODEL_ID": {
-      "description":"Optional - Your Predictive Vision Service Model ID.",
-      "required":false
-    },
-    "PREDICTIVE_SERVICES_URL": {
-      "description":"",
-      "required":false
-    },
-    "PREDICTIVE_SERVICES_TOKEN": {
-      "description":"Optional - Your Predictive Services JWT Token. If set, this will override the apps token regeneration functionality.",
-      "required":false
-    },
-    "PREDICTIVE_SERVICES_ACCOUNT_ID":{
-      "description":"Your Predictive Services Account ID (email address or add-on ID)",
-      "required":false
-    },
-    "PREDICTIVE_SERVICES_PRIVATE_KEY":{
-      "description":"Your Predictive Services private rsa key",
+      "description":"Custom Predictive Vision Service Model ID. Defaults to the General Image Classifier",
       "required":false
     }
   },
   "addons":[
-    "cloudinary"
+    "cloudinary",
+    "predictive-services"
   ]
 }
