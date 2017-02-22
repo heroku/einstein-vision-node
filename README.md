@@ -1,4 +1,4 @@
-# Einstein Vision<br/>Image Identifier demo [![Build Status](https://travis-ci.org/heroku/pvs-node.svg?branch=master)](https://travis-ci.org/heroku/pvs-node)
+# Einstein Vision<br/>Image Recognition demo [![Build Status](https://travis-ci.org/heroku/einstein-vision-node.svg?branch=master)](https://travis-ci.com/heroku/einstein-vision-node)
 
 🚧 **This project is currently in transition to "Einstein Vision" naming.** 🚧
 
@@ -6,7 +6,7 @@ This Node.js sample app lets you upload an image to get predictions from Salesfo
 
 When deploying this app, a new Einstein Vision add-on will be created which includes an Einstein Vision account.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/pvs-node/tree/use-addon)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/einstein-vision-node)
 
 ## Select a Model
 
@@ -101,8 +101,8 @@ Instead of using the Deploy to Heroku button, you may deploy your own forked/cus
 ✏️ *Replace `$APP_NAME` in the following commands with the unique name of your app.*
 
 ```
-git clone https://github.com/heroku/pvs-node.git
-cd pvs-node
+git clone https://github.com/heroku/einstein-vision-node.git
+cd einstein-vision-node
 
 heroku create $APP_NAME
 heroku addons:create cloudinary

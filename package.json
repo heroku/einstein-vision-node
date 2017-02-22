@@ -1,14 +1,14 @@
 {
-  "name": "pvs-node",
+  "name": "einstein-vision-node",
   "version": "1.0.0",
-  "description": "Salesforce Predictive Vision Service demo in Node.js",
+  "description": "Salesforce Einstein Vision demo in Node.js",
   "engines": {
     "node": "6.9.1"
   },
   "main": "index.js",
   "scripts": {
     "start": "node lib/run",
-    "postinstall": "if [ \"$NODE_ENV\" = production ]; then cd react-ui/ && npm install --only=dev && npm install && npm run build; fi",
+    "heroku-postbuild": "cd react-ui/ && npm install --only=dev && npm install && npm run build",
     "test": "ava"
   },
   "cacheDirectories": [
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/pvs-node.git"
+    "url": "https://github.com/heroku/einstein-vision-node.git"
   },
   "keywords": [
     "node",
