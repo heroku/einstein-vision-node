@@ -1,8 +1,10 @@
-# Salesforce Predictive Vision Service<br/>Image Identifier demo [![Build Status](https://travis-ci.org/heroku/pvs-node.svg?branch=master)](https://travis-ci.org/heroku/pvs-node)
+# Einstein Vision<br/>Image Identifier demo [![Build Status](https://travis-ci.org/heroku/pvs-node.svg?branch=master)](https://travis-ci.org/heroku/pvs-node)
 
-This Node.js sample app lets you upload an image to get predictions from the [Salesforce Predictive Vision Service](http://docs.metamind.io/docs/what-is-the-predictive-vision-service) [PVS] using the [Add-on](https://elements.heroku.com/addons/predictive-services).
+🚧 **This project is currently in transition to "Einstein Vision" naming.** 🚧
 
-When deploying this app, a new PVS add-on will be created which includes a Predictive Services account.
+This Node.js sample app lets you upload an image to get predictions from Salesforce [Einstein Vision](http://docs.metamind.io/docs/what-is-the-predictive-vision-service) general classifier using the [Add-on](https://elements.heroku.com/addons/predictive-services).
+
+When deploying this app, a new Einstein Vision add-on will be created which includes an Einstein Vision account.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/pvs-node/tree/use-addon)
 
@@ -27,11 +29,11 @@ heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $APP_NAME
 
 ## Create a Custom Model
 
-Once a Heroku app is deployed with the Predictive Services add-on, use the app credentials to create a custom model and upload training images.
+Once a Heroku app is deployed with the Einstein Vision add-on, use the app credentials to create a custom model and upload training images.
 
 1. Fetch your credentials from the app
 
-  ✏️ *Replace `$APP_NAME` in the following commands with the unique name of the Heroku app w/ PVS Add-on.*
+  ✏️ *Replace `$APP_NAME` in the following commands with the unique name of the Heroku app w/ Einstein Vision Add-on.*
 
   ```bash
   heroku config --app $APP_NAME
@@ -64,12 +66,12 @@ heroku addons:attach $ADD_ON_IDENTIFIER --app $OTHER_APP_NAME
 heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $OTHER_APP_NAME
 ```
 
-👓 **Background** When a Predictive Services add-on is created, it gets a new Predictive Services account. As custom models are created, they are scoped to that account. To share those models, you may attach the add-on to multiple apps.
+👓 **Background** When a Einstein Vision add-on is created, it gets a new Einstein Vision account. As custom models are created, they are scoped to that account. To share those models, you may attach the add-on to multiple apps.
 
 
 ## API Authentication
 
-The Predictive Services add-on sets three configuration variables to provide full access to its API:
+The Einstein Vision add-on sets three configuration variables to provide full access to its API:
 
 * `PREDICTIVE_SERVICES_URL`—The Predictive Vision Service API endpoint.
 * `PREDICTIVE_SERVICES_ACCOUNT_ID`—Your account ID.
@@ -121,9 +123,9 @@ heroku config:set PREDICTIVE_VISION_MODEL_ID=$modelId
 
 ### Run the API Server
 
-The simplest way to work locally is to use the config vars of an existing Heroku app with the *Predictive Services Add-on*. Use the **Deploy to Heroku** button (above) to provision such a dev app.
+The simplest way to work locally is to use the config vars of an existing Heroku app with the *Einstein Vision Add-on*. Use the **Deploy to Heroku** button (above) to provision such a dev app.
 
-✏️ *Then, replace `$APP_NAME` in the following commands with the name of that Predictive Services dev app.*
+✏️ *Then, replace `$APP_NAME` in the following commands with the name of that Einstein Vision dev app.*
 
 ```bash
 # Initial setup
