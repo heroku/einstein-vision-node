@@ -1,4 +1,4 @@
-# Einstein Vision<br/>Image Recognition demo [![Build Status](https://travis-ci.org/heroku/einstein-vision-node.svg?branch=master)](https://travis-ci.com/heroku/einstein-vision-node)
+# Einstein Vision<br/>Image Recognition demo [![Build Status](https://travis-ci.com/heroku/einstein-vision-node.svg?token=fjyAVgyXed9CuzyfbQus&branch=master)](https://travis-ci.com/heroku/einstein-vision-node)
 
 🚧 **This project is currently in transition to "Einstein Vision" naming.** 🚧
 
