@@ -1,7 +1,7 @@
 {
-  "name": "Predictive Vision Service demo",
-  "description": "Image Classification with Salesforce Predictive Vision Service",
-  "repository": "https://github.com/heroku/pvs-node",
+  "name": "Einstein Vision demo",
+  "description": "Salesforce Einstein Vision image recognition demo in Node.js",
+  "repository": "https://github.com/heroku/einstein-vision-node",
   "keywords": ["node", "express", "predictive vision service", "salesforce"],
   "image": "heroku/nodejs",
   "env":{

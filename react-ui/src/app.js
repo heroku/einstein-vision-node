@@ -88,7 +88,7 @@ class App extends Component {
 
         <div className="footer">
           <a href="http://metamind.io/">Predictive Vision API</a>
-          <a href="https://github.com/heroku/pvs-node" 
+          <a href="https://github.com/heroku/einstein-vision-node" 
              target="_blank">github</a>
         </div>
       </div>
