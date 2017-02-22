@@ -2,7 +2,7 @@
 
 🚧 **This project is currently in transition to "Einstein Vision" naming.** 🚧
 
-This Node.js sample app lets you upload an image to get predictions from Salesforce [Einstein Vision](http://docs.metamind.io/docs/what-is-the-predictive-vision-service) general classifier using the [Add-on](https://elements.heroku.com/addons/predictive-services).
+This Node.js sample app lets you upload an image to get predictions from Salesforce [Einstein Vision](http://docs.metamind.io/docs/what-is-the-predictive-vision-service) general classifier using the [Add-on](https://elements.heroku.com/addons/einstein-vision).
 
 When deploying this app, a new Einstein Vision add-on will be created which includes an Einstein Vision account.
 
@@ -24,7 +24,7 @@ To set the model ID for an app:
 ✏️ *Replace each `$VARIABLE` in the following command with a specific value: the desired model ID and the Heroku app name.*
 
 ```bash
-heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $APP_NAME
+heroku config:set CUSTOM_MODEL_ID=$MODEL_ID --app $APP_NAME
 ```
 
 ## Create a Custom Model
@@ -39,16 +39,16 @@ Once a Heroku app is deployed with the Einstein Vision add-on, use the app crede
   heroku config --app $APP_NAME
   ```
 
-  * Copy the value of `PREDICTIVE_SERVICES_ACCOUNT_ID`
-  * Save the multi-line value of `PREDICTIVE_SERVICES_PRIVATE_KEY` into a local file
+  * Copy the value of `EINSTEIN_VISION_ACCOUNT_ID`
+  * Save the multi-line value of `EINSTEIN_VISION_PRIVATE_KEY` into a local file
 1. [Set-up authorization](http://docs.metamind.io/docs/set-up-auth)
-  * Use the value of `PREDICTIVE_SERVICES_ACCOUNT_ID` for the `email_address`
-  * Use the file path for `PREDICTIVE_SERVICES_PRIVATE_KEY` for the `key_file`
+  * Use the value of `EINSTEIN_VISION_ACCOUNT_ID` for the `email_address`
+  * Use the file path for `EINSTEIN_VISION_PRIVATE_KEY` for the `key_file`
 1. [Create & train the model](http://docs.metamind.io/docs/step-1-create-the-dataset)
 1. Once trained, set the Heroku app to use the custom `$MODEL_ID`
 
   ```bash
-  heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $APP_NAME
+  heroku config:set CUSTOM_MODEL_ID=$MODEL_ID --app $APP_NAME
   ```
 
 ## Share a Custom Model
@@ -56,14 +56,14 @@ Once a Heroku app is deployed with the Einstein Vision add-on, use the app crede
 Share an add-on containing custom-trained models between multiple apps by attaching the add-on to each app:
 
 ```bash
-# First, fetch the `predictive-services` add-on identifier from the original app.
+# First, fetch the `einstein-vision` add-on identifier from the original app.
 heroku addons --app $APP_NAME
 
 # Then, attach that add-on to another app.
 heroku addons:attach $ADD_ON_IDENTIFIER --app $OTHER_APP_NAME
 
 # Finally, set the custom model ID on the other app.
-heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $OTHER_APP_NAME
+heroku config:set CUSTOM_MODEL_ID=$MODEL_ID --app $OTHER_APP_NAME
 ```
 
 👓 **Background** When a Einstein Vision add-on is created, it gets a new Einstein Vision account. As custom models are created, they are scoped to that account. To share those models, you may attach the add-on to multiple apps.
@@ -73,20 +73,20 @@ heroku config:set PREDICTIVE_VISION_MODEL_ID=$MODEL_ID --app $OTHER_APP_NAME
 
 The Einstein Vision add-on sets three configuration variables to provide full access to its API:
 
-* `PREDICTIVE_SERVICES_URL`—The Predictive Vision Service API endpoint.
-* `PREDICTIVE_SERVICES_ACCOUNT_ID`—Your account ID.
-* `PREDICTIVE_SERVICES_PRIVATE_KEY`—An RSA key in PEM format.
+* `EINSTEIN_VISION_URL`—The API endpoint.
+* `EINSTEIN_VISION_ACCOUNT_ID`—Your account ID.
+* `EINSTEIN_VISION_PRIVATE_KEY`—An RSA key in PEM format.
 
 The steps to access the API are:
 
 1. **Exchange a JWT for an expiring OAuth token**
-  * endpoint `${PREDICTIVE_SERVICES_URL}v1/oauth2/token`
-  * payload includes `$PREDICTIVE_SERVICES_ACCOUNT_ID`
-  * signed with `$PREDICTIVE_SERVICES_PRIVATE_KEY`
+  * endpoint `${EINSTEIN_VISION_URL}v1/oauth2/token`
+  * payload includes `$EINSTEIN_VISION_ACCOUNT_ID`
+  * signed with `$EINSTEIN_VISION_PRIVATE_KEY`
   * reference implementation in [lib/update-token.js](lib/update-token.js)
   
 2. **Make API requests using the acquired oAuth token**
-  * endpoints `${PREDICTIVE_SERVICES_URL}v1/vision/*`
+  * endpoints `${EINSTEIN_VISION_URL}v1/vision/*`
   * request Header `Authorization: Bearer ${token}`
   * detect status `401` for expired token, and refresh with step 1.
   * reference implementation in [lib/query-vision-api.js](lib/query-vision-api.js)
@@ -106,16 +106,16 @@ cd einstein-vision-node
 
 heroku create $APP_NAME
 heroku addons:create cloudinary
-heroku addons:create predictive-services
+heroku addons:create einstein-vision
 git push heroku master
 
 heroku open
 ```
 
-The app defaults to the General Image identification model supplied by the Predictive Vision Service. If you [create your own model](#using-a-custom-model) you can use it by setting the config var:
+The app defaults to the General Image identification model supplied by the Einstein Vision. If you [create your own model](#using-a-custom-model) you can use it by setting the config var:
 
 ```
-heroku config:set PREDICTIVE_VISION_MODEL_ID=$modelId
+heroku config:set CUSTOM_MODEL_ID=$modelId
 ```
 
 
@@ -166,11 +166,11 @@ cp .env.sample .env
 # Then, update the variables in `.env` with your values.
 
 # Point this at your locally-saved private key.
-export PREDICTIVE_SERVICES_PRIVATE_KEY=`cat path/to/private.key`
+export EINSTEIN_VISION_PRIVATE_KEY=`cat path/to/private.key`
 
 # Run the API server with those environment variables.
 heroku local
 ```
 
-If you provide a private key, the app takes care of JWT authentication for you. If you don't provide a private key you must provide a token yourself as `PREDICTIVE_SERVICES_TOKEN`.
+If you provide a private key, the app takes care of JWT authentication for you. If you don't provide a private key you must provide a token yourself as `EINSTEIN_VISION_TOKEN`.
 
