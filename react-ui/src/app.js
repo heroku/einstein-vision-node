@@ -64,10 +64,11 @@ class App extends Component {
               <div className={classNames(
                 'image-preview',
                 file != null ? 'image-preview-visible' : null)}>
-                <img
+                
+                {isProcessing || response ? <img
                   alt="Upload preview"
                   src={file && file.preview}
-                  style={{ display: 'block' }}/>
+                  style={{ display: 'block' }}/> : null}
                 {!response || isProcessing ? null : 
                   <div className="prompt">Drop image here or tap to upload</div>
                 }
