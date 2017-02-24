@@ -1,7 +1,5 @@
 # Einstein Vision<br/>Image Recognition demo [![Build Status](https://travis-ci.com/heroku/einstein-vision-node.svg?token=fjyAVgyXed9CuzyfbQus&branch=master)](https://travis-ci.com/heroku/einstein-vision-node)
 
-🚧 **This project is currently in transition to "Einstein Vision" naming.** 🚧
-
 This Node.js sample app lets you upload an image to get predictions from Salesforce [Einstein Vision](http://docs.metamind.io/docs/what-is-the-predictive-vision-service) general classifier using the [Add-on](https://elements.heroku.com/addons/einstein-vision).
 
 When deploying this app, a new Einstein Vision add-on will be created which includes an Einstein Vision account.
@@ -12,7 +10,7 @@ When deploying this app, a new Einstein Vision add-on will be created which incl
 
 [Pre-built models](http://docs.metamind.io/docs/use-pre-built-models) let you get started quickly with the service. You can use these models instead of creating your own custom model. When you call the service, you pass in the ID of the model. The model IDs are:
 
-* `GeneralImageClassifier`—The default for this app.
+* `GeneralImageClassifier` (default for this app)
   * identify a variety of images
   * contains thousands of labels
 * `FoodImageClassifier`
@@ -38,14 +36,11 @@ Once a Heroku app is deployed with the Einstein Vision add-on, use the app crede
   ```bash
   heroku config --app $APP_NAME
   ```
-
-  * Copy the value of `EINSTEIN_VISION_ACCOUNT_ID`
-  * Save the multi-line value of `EINSTEIN_VISION_PRIVATE_KEY` into a local file
 1. [Set-up authorization](http://docs.metamind.io/docs/set-up-auth)
-  * Use the value of `EINSTEIN_VISION_ACCOUNT_ID` for the `email_address`
-  * Use the file path for `EINSTEIN_VISION_PRIVATE_KEY` for the `key_file`
+  * Use the value of `EINSTEIN_VISION_ACCOUNT_ID` for the **Account ID**
+  * Use the complete multi-line value of `EINSTEIN_VISION_PRIVATE_KEY` for the **Private Key**
 1. [Create & train the model](http://docs.metamind.io/docs/step-1-create-the-dataset)
-1. Once trained, set the Heroku app to use the custom `$MODEL_ID`
+1. Once trained, set the Heroku app to use its `modelId`
 
   ```bash
   heroku config:set CUSTOM_MODEL_ID=$MODEL_ID --app $APP_NAME
@@ -77,22 +72,22 @@ The Einstein Vision add-on sets three configuration variables to provide full ac
 * `EINSTEIN_VISION_ACCOUNT_ID`—Your account ID.
 * `EINSTEIN_VISION_PRIVATE_KEY`—An RSA key in PEM format.
 
-The steps to access the API are:
+The steps this app uses to access the API are:
 
-1. **Exchange a JWT for an expiring OAuth token**
+1. **Exchange a JWT for an expiring access token**
+  * implemented in [lib/update-token.js](lib/update-token.js)
   * endpoint `${EINSTEIN_VISION_URL}v1/oauth2/token`
   * payload includes `$EINSTEIN_VISION_ACCOUNT_ID`
-  * signed with `$EINSTEIN_VISION_PRIVATE_KEY`
-  * reference implementation in [lib/update-token.js](lib/update-token.js)
-  
-2. **Make API requests using the acquired oAuth token**
+  * signed with `$EINSTEIN_VISION_PRIVATE_KEY`  
+2. **Make API requests using the acquired access token**
+  * implementated in [lib/query-vision-api.js](lib/query-vision-api.js)
   * endpoints `${EINSTEIN_VISION_URL}v1/vision/*`
   * request Header `Authorization: Bearer ${token}`
-  * detect status `401` for expired token, and refresh with step 1.
-  * reference implementation in [lib/query-vision-api.js](lib/query-vision-api.js)
+3. **Auto-refresh the access token, when it expires**
+  * implementated in [lib/query-vision-api.js](lib/query-vision-api.js)
+  * detects status `401` for expired token, and refresh with step 1.
 
-An OAuth token may be manually acquired using [`jwt.sh` in MetaMind/api-utils](https://github.com/MetaMind/api-utils).
-
+👓 For more details see [Einstein Vision authorization](https://devcenter.heroku.com/articles/einstein-vision?preview=1#einstein-vision-authorization).
 
 ## Source-Based Deploy
 
@@ -172,5 +167,5 @@ export EINSTEIN_VISION_PRIVATE_KEY=`cat path/to/private.key`
 heroku local
 ```
 
-If you provide a private key, the app takes care of JWT authentication for you. If you don't provide a private key you must provide a token yourself as `EINSTEIN_VISION_TOKEN`.
+If you a private key is not provided, an access token may be explicitly set as `EINSTEIN_VISION_TOKEN`.
 
