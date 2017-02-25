@@ -3,7 +3,7 @@
 This is the sample app from the blog post [Introducing the Einstein Vision 
 Add-on for Image Recognition]().
 
-*Based on the general-purpose [Node.js example](https://github.com/heroku/einstein-vision-node).*
+Based on the general-purpose [Node.js example](https://github.com/heroku/einstein-vision-node).
 
 ## Training Walkthrough
 
@@ -34,11 +34,11 @@ Once the Heroku app is deployed, use the app's credentials to generate an access
 
 ### 3. Upload the dataset
 
-We'll use the examples contained in this Github repo in `data/Heroku-brand.zip`.
+We'll use the Heroku brand example set hosted on S3.
 
 ```bash
 $ curl -X POST \
-  -F "data=@./data/Heroku-brand.zip" \
+  -F "path=https://marsikai.s3.amazonaws.com/Heroku-brand.zip" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Cache-Control: no-cache" \
   -H "Content-Type: multipart/form-data" \
