@@ -1,171 +1,240 @@
-# Einstein Vision<br/>Image Recognition demo [![Build Status](https://travis-ci.com/heroku/einstein-vision-node.svg?token=fjyAVgyXed9CuzyfbQus&branch=master)](https://travis-ci.com/heroku/einstein-vision-node)
+# Einstein Vision<br/>Heroku Brand Recognition demo
 
-This Node.js sample app lets you upload an image to get predictions from Salesforce [Einstein Vision](http://docs.metamind.io/docs/what-is-the-predictive-vision-service) general classifier using the [Add-on](https://elements.heroku.com/addons/einstein-vision).
+This is the sample app from the blog post [Introducing the Einstein Vision 
+Add-on for Image Recognition]().
 
-When deploying this app, a new Einstein Vision add-on will be created which includes an Einstein Vision account.
+*Based on the general-purpose [Node.js example](https://github.com/heroku/einstein-vision-node).*
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/einstein-vision-node)
+## Training Walkthrough
 
-## Select a Model
+### 1. Deploy this app
 
-[Pre-built models](http://docs.metamind.io/docs/use-pre-built-models) let you get started quickly with the service. You can use these models instead of creating your own custom model. When you call the service, you pass in the ID of the model. The model IDs are:
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/einstein-vision-node/tree/heroku-recognizer)
 
-* `GeneralImageClassifier` (default for this app)
-  * identify a variety of images
-  * contains thousands of labels
-* `FoodImageClassifier`
-  * identify different foods
-  * contains over 500 labels.
+This creates a new Heroku app including the [Einstein Vision add-on](https://elements.heroku.com/addons/einstein-vision).
 
-To set the model ID for an app:
+### 2. Get access token
 
-✏️ *Replace each `$VARIABLE` in the following command with a specific value: the desired model ID and the Heroku app name.*
-
-```bash
-heroku config:set CUSTOM_MODEL_ID=$MODEL_ID --app $APP_NAME
-```
-
-## Create a Custom Model
-
-Once a Heroku app is deployed with the Einstein Vision add-on, use the app credentials to create a custom model and upload training images.
+Once the Heroku app is deployed, use the app's credentials to generate an access token for the Einstein Vision API.
 
 1. Fetch your credentials from the app
 
-  ✏️ *Replace `$APP_NAME` in the following commands with the unique name of the Heroku app w/ Einstein Vision Add-on.*
+  ✏️ *Replace `$APP_NAME` in the following command with the name of the deployed app.*
 
   ```bash
   heroku config --app $APP_NAME
   ```
-1. [Set-up authorization](http://docs.metamind.io/docs/set-up-auth)
+1. [Generate an access token](https://api.metamind.io/token)
   * Use the value of `EINSTEIN_VISION_ACCOUNT_ID` for the **Account ID**
   * Use the complete multi-line value of `EINSTEIN_VISION_PRIVATE_KEY` for the **Private Key**
-1. [Create & train the model](http://docs.metamind.io/docs/step-1-create-the-dataset)
-1. Once trained, set the Heroku app to use its `modelId`
+  * Set expiry to `10080` minutes (1-week)
+1. Note the new token value to use in upcoming commands for `$TOKEN`.
 
-  ```bash
-  heroku config:set CUSTOM_MODEL_ID=$MODEL_ID --app $APP_NAME
-  ```
+👓 *More about [Einstein Vision authorization](http://docs.metamind.io/docs/set-up-auth).*
 
-## Share a Custom Model
+### 3. Upload the dataset
 
-Share an add-on containing custom-trained models between multiple apps by attaching the add-on to each app:
+We'll use the examples contained in this Github repo in `data/Heroku-brand.zip`.
 
 ```bash
-# First, fetch the `einstein-vision` add-on identifier from the original app.
-heroku addons --app $APP_NAME
-
-# Then, attach that add-on to another app.
-heroku addons:attach $ADD_ON_IDENTIFIER --app $OTHER_APP_NAME
-
-# Finally, set the custom model ID on the other app.
-heroku config:set CUSTOM_MODEL_ID=$MODEL_ID --app $OTHER_APP_NAME
+$ curl -X POST \
+  -F "data=@./data/Heroku-brand.zip" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Cache-Control: no-cache" \
+  -H "Content-Type: multipart/form-data" \
+  https://api.metamind.io/v1/vision/datasets/upload/sync
 ```
 
-👓 **Background** When a Einstein Vision add-on is created, it gets a new Einstein Vision account. As custom models are created, they are scoped to that account. To share those models, you may attach the add-on to multiple apps.
+Sample response:
 
-
-## API Authentication
-
-The Einstein Vision add-on sets three configuration variables to provide full access to its API:
-
-* `EINSTEIN_VISION_URL`—The API endpoint.
-* `EINSTEIN_VISION_ACCOUNT_ID`—Your account ID.
-* `EINSTEIN_VISION_PRIVATE_KEY`—An RSA key in PEM format.
-
-The steps this app uses to access the API are:
-
-1. **Exchange a JWT for an expiring access token**
-  * implemented in [lib/update-token.js](lib/update-token.js)
-  * endpoint `${EINSTEIN_VISION_URL}v1/oauth2/token`
-  * payload includes `$EINSTEIN_VISION_ACCOUNT_ID`
-  * signed with `$EINSTEIN_VISION_PRIVATE_KEY`  
-2. **Make API requests using the acquired access token**
-  * implementated in [lib/query-vision-api.js](lib/query-vision-api.js)
-  * endpoints `${EINSTEIN_VISION_URL}v1/vision/*`
-  * request Header `Authorization: Bearer ${token}`
-3. **Auto-refresh the access token, when it expires**
-  * implementated in [lib/query-vision-api.js](lib/query-vision-api.js)
-  * detects status `401` for expired token, and refresh with step 1.
-
-👓 For more details see [Einstein Vision authorization](https://devcenter.heroku.com/articles/einstein-vision?preview=1#einstein-vision-authorization).
-
-## Source-Based Deploy
-
-Instead of using the Deploy to Heroku button, you may deploy your own forked/customized version of the source code.
-
-✏️ *Replace `$APP_NAME` in the following commands with the unique name of your app.*
-
-```
-git clone https://github.com/heroku/einstein-vision-node.git
-cd einstein-vision-node
-
-heroku create $APP_NAME
-heroku addons:create cloudinary
-heroku addons:create einstein-vision
-git push heroku master
-
-heroku open
+```json
+{
+  "id": 1000327,
+  "name": "Heroku-brand",
+  "createdAt": "2017-02-24T05:36:33.000+0000",
+  "updatedAt": "2017-02-24T05:36:33.000+0000",
+  "labelSummary": {
+    "labels": [
+      {
+        "id": 4079,
+        "datasetId": 1000327,
+        "name": "Heroku-logo",
+        "numExamples": 15
+      },
+      {
+        "id": 4080,
+        "datasetId": 1000327,
+        "name": "Heroku-artwork",
+        "numExamples": 19
+      },
+      {
+        "id": 4081,
+        "datasetId": 1000327,
+        "name": "unknown",
+        "numExamples": 22
+      }
+    ]
+  },
+  "totalExamples": 56,
+  "totalLabels": 3,
+  "available": true,
+  "statusMsg": "SUCCEEDED",
+  "object": "dataset"
+}
 ```
 
-The app defaults to the General Image identification model supplied by the Einstein Vision. If you [create your own model](#using-a-custom-model) you can use it by setting the config var:
+✏️ *Note the returned dataset `"id"` to use in upcoming cammands as `$DATASET_ID`.*
 
-```
-heroku config:set CUSTOM_MODEL_ID=$modelId
-```
+👓 *More about Einstein Vision [synchronous](https://metamind.readme.io/docs/create-a-dataset-zip-sync) and [asynchronous dataset upload](https://metamind.readme.io/docs/create-a-dataset-zip-async).*
 
-
-## Development
-
-### Run the API Server
-
-The simplest way to work locally is to use the config vars of an existing Heroku app with the *Einstein Vision Add-on*. Use the **Deploy to Heroku** button (above) to provision such a dev app.
-
-✏️ *Then, replace `$APP_NAME` in the following commands with the name of that Einstein Vision dev app.*
+### 4. Train the model
 
 ```bash
-# Initial setup
-npm install
-heroku plugins:install heroku-run-localjs
-
-# Start the server
-heroku run:local npm start --app $APP_NAME
+$ curl -X GET \
+  -F "name=Heroku brand" \
+  -F "datasetId=$DATASET_ID" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Cache-Control: no-cache" \
+  https://api.metamind.io/v1/vision/train
 ```
 
+Sample response:
 
-### Run the React UI
+```json
+{
+  "datasetId": 1000327,
+  "name": "Heroku brand",
+  "status": "QUEUED",
+  "progress": 0,
+  "createdAt": "2017-02-24T05:30:08.000+0000",
+  "updatedAt": "2017-02-24T05:30:08.000+0000",
+  "learningRate": 0.001,
+  "epochs": 3,
+  "queuePosition": 1,
+  "type": "image",
+  "jobParams": null,
+  "jobResults": null,
+  "object": "training",
+  "modelId": "YXYLHLXO2XFBWCKNAXJFWA5LLM"
+}
+```
 
-A React app with hot-reloading via [create-react-app](https://github.com/facebookincubator/create-react-app) is served from `react-ui/`; automatically proxies backend requests to the local Node server.
+✏️ *Note the returned `"modelId"` to use in upcoming cammands as `$MODEL_ID`.*
 
-In a separate terminal from the API server, start the UI:
+👓 *More about Einstein Vision [training](https://metamind.readme.io/docs/train-a-dataset).*
+
+### 5. Training status
 
 ```bash
-# Initial setup
-npm install --prefix react-ui
-
-# Start the server
-npm start --prefix react-ui
+$ curl -X GET  \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Cache-Control: no-cache" \
+  https://api.metamind.io/v1/vision/train/$MODEL_ID
 ```
 
+Sample response:
 
-### Testing
+```json
+{
+  "datasetId": 1000325,
+  "name": "Heroku brand",
+  "status": "SUCCEEDED",
+  "progress": 1,
+  "createdAt": "2017-02-24T05:30:08.000+0000",
+  "updatedAt": "2017-02-24T05:31:36.000+0000",
+  "learningRate": 0.001,
+  "epochs": 3,
+  "type": "image",
+  "jobParams": null,
+  "jobResults": null,
+  "object": "training",
+  "modelId": "YXYLHLXO2XFBWCKNAXJFWA5LLM"
+}
+```
+
+🚦 *Wait to proceed until `"status"` is `SUCCEEDED` for the model.*
+
+👓 *More about Einstein Vision [training status](https://metamind.readme.io/docs/get-training-status).*
+
+
+### 6. Inspect the model
+
+Get metrics to understand the model's performance and plan improvements for the training dataset.
 
 ```bash
-npm test
+$ curl -X GET  \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Cache-Control: no-cache" \
+  https://api.metamind.io/v1/vision/models/$MODEL_ID
 ```
 
+Sample response:
 
-### Manual Environment Config
+```json
+{
+  "metricsData": {
+    "f1": [
+      1,1,1
+    ],
+    "labels": [
+      "Heroku-logo",
+      "Heroku-artwork",
+      "unknown"
+    ],
+    "testAccuracy": 1,
+    "trainingLoss": 0.0385,
+    "confusionMatrix": [
+      [1,0,0],
+      [0,1,0],
+      [0,0,1]
+    ],
+    "trainingAccuracy": 0.9819
+  },
+  "createdAt": "2017-02-24T05:31:35.000+0000",
+  "id": "YXYLHLXO2XFBWCKNAXJFWA5LLM",
+  "object": "metrics"
+}
+```
+
+👓 *More about Einstein Vision [model metrics](https://metamind.readme.io/docs/get-model-metrics).*
+
+
+## Query for predictions
+
+Once training is complete, the new model will answer queries about images by URL reference or direct upload.
+
+We'll use an unseen example image contained in this Github repo in `data/unseen`.
 
 ```bash
-cp .env.sample .env
-# Then, update the variables in `.env` with your values.
-
-# Point this at your locally-saved private key.
-export EINSTEIN_VISION_PRIVATE_KEY=`cat path/to/private.key`
-
-# Run the API server with those environment variables.
-heroku local
+$ curl -X POST \
+  -F "sampleContent=@./data/unseen/screen-shot-000.png" \
+  -F "modelId=$MODEL_ID" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Cache-Control: no-cache" \
+  -H "Content-Type: multipart/form-data" \
+  https://api.metamind.io/v1/vision/predict
 ```
 
-If you a private key is not provided, an access token may be explicitly set as `EINSTEIN_VISION_TOKEN`.
+Sample response:
 
+```json
+{
+  "probabilities": [
+    {
+      "label": "Heroku-artwork",
+      "probability": 0.77794427
+    },
+    {
+      "label": "unknown",
+      "probability": 0.22203164
+    },
+    {
+      "label": "Heroku-logo",
+      "probability": 2.4128907e-05
+    }
+  ],
+  "object": "predictresponse"
+}
+```
+
+👓 *More about Einstein Vision [prediction with an image file](https://metamind.readme.io/docs/prediction-with-image-file), [an image URL](https://metamind.readme.io/docs/prediction-with-image-url), and [base64 encoded image data](https://metamind.readme.io/docs/prediction-with-image-base64-string).*
