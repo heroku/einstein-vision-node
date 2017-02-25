@@ -13,13 +13,13 @@ Based on the general-purpose [Node.js example](https://github.com/heroku/einstei
 
 This creates a new Heroku app including the [Einstein Vision add-on](https://elements.heroku.com/addons/einstein-vision).
 
+✏️ *Note the app name for use in upcomings commands as `$APP_NAME`.*
+
 ### 2. Get access token
 
 Once the Heroku app is deployed, use the app's credentials to generate an access token for the Einstein Vision API.
 
 1. Fetch your credentials from the app
-
-  ✏️ *Replace `$APP_NAME` in the following command with the name of the deployed app.*
 
   ```bash
   heroku config --app $APP_NAME
@@ -28,7 +28,8 @@ Once the Heroku app is deployed, use the app's credentials to generate an access
   * Use the value of `EINSTEIN_VISION_ACCOUNT_ID` for the **Account ID**
   * Use the complete multi-line value of `EINSTEIN_VISION_PRIVATE_KEY` for the **Private Key**
   * Set expiry to `10080` minutes (1-week)
-1. Note the new token value to use in upcoming commands for `$TOKEN`.
+
+✏️ *Note the new token value to use in upcoming commands for `$TOKEN`.*
 
 👓 *More about [Einstein Vision authorization](http://docs.metamind.io/docs/set-up-auth).*
 
@@ -83,7 +84,7 @@ Sample response:
 }
 ```
 
-✏️ *Note the returned dataset `"id"` to use in upcoming cammands as `$DATASET_ID`.*
+✏️ *Note the returned dataset `"id"` to use in upcoming commands as `$DATASET_ID`.*
 
 👓 *More about Einstein Vision [synchronous](https://metamind.readme.io/docs/create-a-dataset-zip-sync) and [asynchronous dataset upload](https://metamind.readme.io/docs/create-a-dataset-zip-async).*
 
@@ -119,7 +120,7 @@ Sample response:
 }
 ```
 
-✏️ *Note the returned `"modelId"` to use in upcoming cammands as `$MODEL_ID`.*
+✏️ *Note the returned `"modelId"` to use in upcoming commands as `$MODEL_ID`.*
 
 👓 *More about Einstein Vision [training](https://metamind.readme.io/docs/train-a-dataset).*
 
