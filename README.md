@@ -7,6 +7,14 @@ Based on the general-purpose [Node.js example](https://github.com/heroku/einstei
 
 ## Training Walkthrough
 
+🚦 Requirements:
+
+* [Heroku](https://www.heroku.com/home)
+  * [command-line tools (CLI)](https://toolbelt.heroku.com)
+  * [a free account](https://signup.heroku.com)
+* [curl](https://curl.haxx.se/docs/install.html)
+  * open terminal and check if it's installed: `curl --version`
+
 ### 1. Deploy this app
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/heroku/einstein-vision-node/tree/heroku-recognizer)
@@ -89,6 +97,8 @@ Sample response:
 👓 *More about Einstein Vision [synchronous](https://metamind.readme.io/docs/create-a-dataset-zip-sync) and [asynchronous dataset upload](https://metamind.readme.io/docs/create-a-dataset-zip-async).*
 
 ### 4. Train the model
+
+✏️ *Name the model by setting the `name=` parameter, `name=Heroku brand` in this example.*
 
 ```bash
 $ curl -X GET \
@@ -204,7 +214,7 @@ Sample response:
 
 Once training is complete, the new model will answer queries about images by URL reference or direct upload.
 
-We'll use an unseen example image contained in this Github repo in `data/unseen`.
+We'll query with an image contained in this Github repo in `data/unseen/` which was not in the training dataset.
 
 ```bash
 $ curl -X POST \
