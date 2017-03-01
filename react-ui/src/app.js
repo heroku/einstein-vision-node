@@ -28,14 +28,14 @@ class App extends Component {
     return (
       <div className="app">
         <div className="title-container">
-          <div className="title-logo"><HerokuLogo/></div>
           <div className="title-text">
-            <h1 className="">Brand Recognizer Demo</h1>
+            <h1 className="">Brand Recognizer</h1>
             <p>Powered by <a href="https://elements.heroku.com/addons/einstein-vision">
               {'Einstein Vision'}
             </a></p>
-            <p className="detail-text">An example application of custom image recognition. Upload an image to identify if it contains the Heroku logo or supporting artwork.</p>
+            <p className="detail-text">Example application of custom image recognition. Upload an image to identify if it contains the Heroku logo or supporting artwork.</p>
           </div>
+          <div className="title-logo"><HerokuLogo/></div>
         </div>
 
 

@@ -51,6 +51,7 @@ table {
 
 html {
   box-sizing: content-box;
+  color: #333;
 }
 
 @media (min-width: 550px) {
@@ -75,7 +76,7 @@ a:visited {
 
 .app h1 {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .app p {
@@ -91,16 +92,17 @@ a:visited {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
 }
 
 .app .title-logo {
   flex: 0 0 5rem;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 0.8rem;
 }
 
 .app .title-text {
-  padding: 1rem 1rem 1rem 0;
-  max-width: 20rem;
+  padding: 1rem 0 1rem 1rem;
+  max-width: 15rem;
 }
 
 .app .about {
