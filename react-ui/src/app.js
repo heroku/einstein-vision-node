@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import superagent from 'superagent';
 
 import './app.css';
+import HerokuLogo from './heroku-logo';
 import Spinner from './spinner';
 import Predictions from './predictions';
 import UploadTarget from './upload-target';
@@ -25,15 +26,32 @@ class App extends Component {
     const predictions = (response && response.probabilities) || [];
 
     return (
-      <div>
-        <div className="title">
-          <h1 className="intro">
-             Einstein Vision Demo
-             <div className="detail">of the General Image Classifier</div>
-          </h1>
+      <div className="app">
+        <div className="title-container">
+          <div className="title-logo"><HerokuLogo/></div>
+          <div className="title-text">
+            <h1 className="">Brand Recognizer Demo</h1>
+            <p>Powered by <a href="https://elements.heroku.com/addons/einstein-vision">
+              {'Einstein Vision'}
+            </a></p>
+            <p className="detail-text">An example application of custom image recognition. Upload an image to identify if it contains the Heroku logo or supporting artwork.</p>
+          </div>
         </div>
+
+
+        {!uploadError
+          ? <div className="about">
+              <ul>
+                <li><a href="https://www.heroku.com/blog">Introduction</a></li>
+                <li><a href="https://github.com/heroku/einstein-vision-node">GitHub</a></li>
+                <li><a href="https://metamind.readme.io/v1/docs">API Docs</a></li>
+              </ul>
+            </div>
+          : <p className="status-message status-message-error">
+              {uploadError}
+            </p>}
+
         <div className={classNames(
-          "app",
           file != null ? "app-with-image" : null)}>
           {response || isProcessing ? null : <Dropzone
             accept={'image/png, image/jpeg'}
@@ -48,7 +66,6 @@ class App extends Component {
             rejectClassName="dropzone-reject">
             <UploadTarget/>
           </Dropzone>}
-
           
           <Dropzone
               accept={'image/png, image/jpeg'}
@@ -57,40 +74,32 @@ class App extends Component {
               style={{}}
               className={classNames(
                 'dropzone',
-                file != null ? 'dropzone-dropped' : null
+                file != null && !uploadError ? 'dropzone-dropped' : null
               )}
               activeClassName="dropzone-active"
               rejectClassName="dropzone-reject">
           <div className="result-wrapper">
               <div className={classNames(
                 'image-preview',
-                file != null ? 'image-preview-visible' : null)}>
+                file != null && !uploadError ? 'image-preview-visible' : null)}>
                 
                 {isProcessing || response ? <img
                   alt="Upload preview"
                   src={file && file.preview}
                   style={{ display: 'block' }}/> : null}
                 {!response || isProcessing ? null : 
-                  <div className="prompt">Drop or tap to upload another.</div>
+                  <div className="prompt">Drop or tap to upload another</div>
                 }
                 <div className="spinner-wrapper">
                   {isProcessing
                     ? <span><Spinner/><div className="spinner-text">Analyzing Image...</div></span>
                     : null}
-                  {uploadError
-                    ? uploadError
-                    :null}
                 </div>
               </div>
             
             <Predictions contents={predictions}/>
           </div>
           </Dropzone>
-        </div>
-
-        <div className="footer">
-          <a href="https://github.com/heroku/einstein-vision-node">GitHub</a>
-          <a href="https://metamind.readme.io/v1/docs">API Docs</a>
         </div>
       </div>
     );

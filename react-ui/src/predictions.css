@@ -6,12 +6,17 @@
 
 .predictions .prediction {
   overflow: hidden;
-  margin: 1rem 2rem;
+  line-height: 1.5rem;
+  margin: 0 1rem;
   padding: 0.1rem 1rem;
   color: #fff;
   background: #000;
   border-radius: 6px;
   text-align: left;
+}
+
+.predictions .prediction + .prediction {
+  margin-top: 0.5rem;
 }
 
 .predictions .prediction .probability {

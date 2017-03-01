@@ -1,87 +1,202 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
 body {
-  font-family: "sans-serif";
-  color: #fff;
-  margin: 0;
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-h2, h3, p {
-  margin: 0.3rem;
+/* Global style tweaks */
+
+html {
+  box-sizing: content-box;
 }
 
-
-.title {
-  margin: 0 2rem;
-  color: #444;
-  text-align: center;
+@media (min-width: 550px) {
+  html { font-size: 120%; }
+}
+@media (min-width: 1200px) {
+  html { font-size: 140%; }
 }
 
-.title .detail {
-  font-size: 1rem;
-  font-weight: normal;
+a {
+  color: #00449e;
+}
+a:visited {
+  color: #79589f;
 }
 
-.title::after {
-  content: " ";
-  display: table;
-  clear: both;
-}
-
-.intro{
-  font-size: 1.3rem;
-}
-
-h1 {
-  padding: 1rem 0 1rem 0;
-  margin: 0;
-  font-size: 1rem;
-}
-
-.demo-text {
-  color:#444;
-}
+/* Begin top-level component styles */
 
 .app {
-  text-align: center;
-  /*background-color:#07b;*/
-  background-color:#444;
-  transition: background 2s ease-in-out;
+  font-family: sans-serif;
 }
-.app-with-image{
-  background-color: #444;
+
+.app h1 {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.app p {
+  margin-top: 0.3rem;
+}
+
+.app .detail-text {
+  font-size: 0.7rem;
+}
+
+.app .title-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.app .title-logo {
+  flex: 0 0 5rem;
+  padding: 1rem;
+}
+
+.app .title-text {
+  padding: 1rem 1rem 1rem 0;
+  max-width: 20rem;
+}
+
+.app .about {
+  height: 2rem;
+  line-height: 1.8rem;
+}
+
+.app .about ul {
+  text-align: center;
+}
+.app .about li {
+  display: inline;
+}
+.app .about li + li {
+  padding-left: 1rem;
 }
 
 .app .initial-dropzone {
-  margin: 0rem 2rem 0rem 2rem;
-  padding: 2rem 0rem 2rem 0rem;
+  position: relative;
+  padding: 1rem 0;
 }
 
-.app-with-image .dropzone-active {
-   background:#0c0; 
+.dropzone .prompt {
+  color: #666;
+  text-align: center;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  transition:
+    opacity 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    transform 2s ease-in-out;
 }
 
-.app-with-image .dropzone-reject {
-  background: #c00;
+.dropzone-active .upload-target {
+   background-color: #137752; 
+}
+.dropzone-active .upload-target .camera {
+   fill: #aad8b3;
+}
+.dropzone-active .upload-target .prompt {
+  color: #aad8b3;
+}
+
+.dropzone-reject .upload-target {
+  background-color: #d64242;
+}
+.dropzone-reject .upload-target .camera {
+   fill: #fff7f7;
+}
+.dropzone-reject .upload-target .prompt {
+  color: #fff7f7;
+}
+
+/*.dropzone-dropped .upload-target {
+  height:0px;
+  background: #444;
+}
+.dropzone-dropped .upload-target svg:hover {
+  transform: scale(.9);
+}
+.dropzone-dropped .upload-target svg {
+  max-height: 1px;
+  opacity:0;
+  
+}
+.dropzone-dropped .upload-target .prompt {
+   opacity: 0; 
+}
+*/
+.dropzone-dropped .loading {
+  opacity:0;
+}
+.dropzone-dropped .loading {
+  opacity:1;
+}
+
+div.dropzone {
+  transition:
+    margin 0.2s ease-in-out,
+    transform 2s ease-in-out;
 }
 
 .app .status-message {
   text-align: left;
   height: 2rem;
   line-height: 1.8rem;
-  margin: 0 2rem;
-  border-radius: 0.8rem;
-  padding: 0.1rem 1rem;
-  background-color: #222;
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0;
-}
-
-.app .status-message-visible {
-  opacity: 1;
+  border-radius: 0.5rem;
+  margin: 0 1rem;
+  padding: 0 1rem;
 }
 
 .app .status-message-error {
-  background-color: #600;
-  color: #fcc;
+  background-color: #d64242;
+  color: #fff7f7;
 }
 
 .app .image-preview {
@@ -89,13 +204,18 @@ h1 {
   transition: max-height 2s ease-in-out;
   flex-grow:1;
 }
+.app .image-preview .prompt {
+  bottom: -1.5rem;
+}
 .app .image-preview img {
     margin: 0 auto;
-    width: 100%;
-    max-width: 400px;
-    max-height: 400px;
+    max-height: 30vh;
+    max-width: 100%;
     cursor:pointer;
     border-radius: 6px;
+}
+@media (min-width: 550px) {
+  .app .image-preview img { max-width: 50vw; }
 }
 
 .app .image-preview-visible {
@@ -103,36 +223,11 @@ h1 {
   margin: 2rem 2rem 2rem 2rem;
 }
 
-.prompt {
-  color: #777;
-  position: absolute;
-  bottom: 2%;
-  left: 0px;
-  right: 0px;
-  transition:
-    opacity 0.2s ease-in-out,
-    color 2s ease-in-out,
-    transform 2s ease-in-out;
-}
-.app .image-preview .prompt {
-  bottom: -1.5rem;
-}
-
-.result-wrapper{
+.app .result-wrapper{
+  margin: 1rem 0;
+  text-align: center;
+  background-color: #ccc;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  box-shadow: 1px 0px 11px -5px #777; 
-}
-
-.footer {
-  margin-top:1rem;
-  text-align: center;
-  width:100%;
-}
-
-.footer a {
-  display:inline-block;
-  margin:1rem;
-  color:#777;
 }

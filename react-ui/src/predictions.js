@@ -40,7 +40,7 @@ class Predictions extends Component {
               key={`prediction-${i}`}
               style={Object.assign(style, {
                 color: color,
-                backgroundColor: `rgba(0,119,187,${probability})`
+                backgroundColor: `rgba(67,0,152,${probability})`
               })}>
               <h2>{labels[0]} <span className="probability" title="Probability">{percent}%</span></h2>
               {labels[1] != null
