@@ -29,7 +29,7 @@ class App extends Component {
       <div className="app">
         <div className="title-container">
           <div className="title-text">
-            <h1 className="">Brand Recognizer</h1>
+            <h1>Heroku Brand Recognizer</h1>
             <p>Powered by <a href="https://elements.heroku.com/addons/einstein-vision">
               {'Einstein Vision'}
             </a></p>
