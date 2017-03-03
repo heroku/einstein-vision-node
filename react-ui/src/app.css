@@ -1,18 +1,5 @@
-@font-face{
-  font-family: "sfs-regular";
-  src:url("/SalesforceSans-Regular.ttf");
-}
-
-@font-face{
-  font-family: "sfs-thin";
-  src:url("/SalesforceSans-Thin.ttf");
-}
-
-html,body,div,p,span {
-  font-family: "sfs-thin";
-}
-
 body {
+  font-family: "sans-serif";
   color: #fff;
   margin: 0;
 }
@@ -24,6 +11,13 @@ h2, h3, p {
 
 .title {
   margin: 0 2rem;
+  color: #444;
+  text-align: center;
+}
+
+.title .detail {
+  font-size: 1rem;
+  font-weight: normal;
 }
 
 .title::after {
@@ -33,22 +27,17 @@ h2, h3, p {
 }
 
 .intro{
-  font-size: 2rem;
-  line-height: 3rem;
-  text-align: center;
+  font-size: 1.3rem;
 }
 
 h1 {
-  text-align: left;
   padding: 1rem 0 1rem 0;
   margin: 0;
   font-size: 1rem;
-  color: #333;
 }
 
 .demo-text {
   color:#444;
-  font-family:"sfs-regular";
 }
 
 .app {
@@ -96,6 +85,7 @@ h1 {
 }
 
 .app .image-preview {
+  position: relative;
   transition: max-height 2s ease-in-out;
   flex-grow:1;
 }
@@ -111,6 +101,21 @@ h1 {
 .app .image-preview-visible {
   display:block;
   margin: 2rem 2rem 2rem 2rem;
+}
+
+.prompt {
+  color: #777;
+  position: absolute;
+  bottom: 2%;
+  left: 0px;
+  right: 0px;
+  transition:
+    opacity 0.2s ease-in-out,
+    color 2s ease-in-out,
+    transform 2s ease-in-out;
+}
+.app .image-preview .prompt {
+  bottom: -1.5rem;
 }
 
 .result-wrapper{

@@ -32,18 +32,6 @@
   fill:#FFF;
 }
 
-.upload-target .prompt {
-  color: #777;
-  position: absolute;
-  bottom: 3%;
-  left: 0px;
-  right: 0px;
-  font-family:"sfs-regular";
-  transition:
-    opacity 0.2s ease-in-out,
-    color 2s ease-in-out,
-    transform 2s ease-in-out;
-}
 .upload-target .frame {
   display:none;
   fill: #000;

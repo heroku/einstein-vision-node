@@ -28,7 +28,8 @@ class App extends Component {
       <div>
         <div className="title">
           <h1 className="intro">
-             Salesforce Predictive Vision Demo
+             Einstein Vision Demo
+             <div className="detail">of the General Image Classifier</div>
           </h1>
         </div>
         <div className={classNames(
@@ -70,7 +71,7 @@ class App extends Component {
                   src={file && file.preview}
                   style={{ display: 'block' }}/> : null}
                 {!response || isProcessing ? null : 
-                  <div className="prompt">Drop image here or tap to upload</div>
+                  <div className="prompt">Drop or tap to upload another.</div>
                 }
                 <div className="spinner-wrapper">
                   {isProcessing
@@ -88,9 +89,8 @@ class App extends Component {
         </div>
 
         <div className="footer">
-          <a href="http://metamind.io/">Einstein Vision API</a>
-          <a href="https://github.com/heroku/einstein-vision-node" 
-             target="_blank">github</a>
+          <a href="https://github.com/heroku/einstein-vision-node">GitHub</a>
+          <a href="https://metamind.readme.io/v1/docs">API Docs</a>
         </div>
       </div>
     );
