@@ -1,9 +1,11 @@
 # Einstein Vision<br/>Heroku Brand Recognition demo
 
 This is the sample app from the blog post [Introducing the Einstein Vision 
-Add-on for Image Recognition]().
+Add-on for Image Recognition](https://blog.heroku.com).
 
-Based on the general-purpose [Node.js example](https://github.com/heroku/einstein-vision-node).
+Demo deployment at [heroku-recognizer.herokuapp.com](https://heroku-recognizer.herokuapp.com).
+
+Based on the general-purpose [Einstein Vision Node.js example](https://github.com/heroku/einstein-vision-node).
 
 ## Training Walkthrough
 
