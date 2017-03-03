@@ -47,10 +47,8 @@ We'll use the Heroku brand example set hosted on S3.
 
 ```bash
 $ curl -X POST \
-  -F "path=https://marsikai.s3.amazonaws.com/Heroku-brand.zip" \
+  -F "path=https://einstein-vision.s3.amazonaws.com/heroku-recognizer/HerokuBrandDataset-002.zip" \
   -H "Authorization: Bearer $TOKEN" \
-  -H "Cache-Control: no-cache" \
-  -H "Content-Type: multipart/form-data" \
   https://api.metamind.io/v1/vision/datasets/upload/sync
 ```
 
@@ -58,34 +56,40 @@ Sample response:
 
 ```json
 {
-  "id": 1000327,
-  "name": "Heroku-brand",
-  "createdAt": "2017-02-24T05:36:33.000+0000",
-  "updatedAt": "2017-02-24T05:36:33.000+0000",
+  "id": 1000517,
+  "name": "HerokuBrandDataset-002",
+  "createdAt": "2017-03-02T23:23:53.000+0000",
+  "updatedAt": "2017-03-02T23:23:53.000+0000",
   "labelSummary": {
     "labels": [
       {
-        "id": 4079,
-        "datasetId": 1000327,
-        "name": "Heroku-logo",
-        "numExamples": 15
+        "id": 5523,
+        "datasetId": 1000517,
+        "name": "Heroku Swag",
+        "numExamples": 135
       },
       {
-        "id": 4080,
-        "datasetId": 1000327,
-        "name": "Heroku-artwork",
-        "numExamples": 19
+        "id": 5524,
+        "datasetId": 1000517,
+        "name": "Heroku Artwork",
+        "numExamples": 52
       },
       {
-        "id": 4081,
-        "datasetId": 1000327,
+        "id": 5525,
+        "datasetId": 1000517,
+        "name": "Heroku Logo",
+        "numExamples": 45
+      },
+      {
+        "id": 5526,
+        "datasetId": 1000517,
         "name": "unknown",
-        "numExamples": 22
+        "numExamples": 139
       }
     ]
   },
-  "totalExamples": 56,
-  "totalLabels": 3,
+  "totalExamples": 371,
+  "totalLabels": 4,
   "available": true,
   "statusMsg": "SUCCEEDED",
   "object": "dataset"
@@ -101,11 +105,10 @@ Sample response:
 ✏️ *Name the model by setting the `name=` parameter, `name=Heroku brand` in this example.*
 
 ```bash
-$ curl -X GET \
+$ curl -X POST \
   -F "name=Heroku brand" \
   -F "datasetId=$DATASET_ID" \
   -H "Authorization: Bearer $TOKEN" \
-  -H "Cache-Control: no-cache" \
   https://api.metamind.io/v1/vision/train
 ```
 
@@ -113,12 +116,13 @@ Sample response:
 
 ```json
 {
-  "datasetId": 1000327,
+  "datasetId": 1000517,
+  "datasetVersionId": 0,
   "name": "Heroku brand",
   "status": "QUEUED",
   "progress": 0,
-  "createdAt": "2017-02-24T05:30:08.000+0000",
-  "updatedAt": "2017-02-24T05:30:08.000+0000",
+  "createdAt": "2017-03-02T23:26:44.000+0000",
+  "updatedAt": "2017-03-02T23:26:44.000+0000",
   "learningRate": 0.001,
   "epochs": 3,
   "queuePosition": 1,
@@ -126,8 +130,9 @@ Sample response:
   "jobParams": null,
   "jobResults": null,
   "object": "training",
-  "modelId": "YXYLHLXO2XFBWCKNAXJFWA5LLM"
+  "modelId": "2PZ2U47YFR6P3NA2AZK2P7MW6Y"
 }
+
 ```
 
 ✏️ *Note the returned `"modelId"` to use in upcoming commands as `$MODEL_ID`.*
@@ -147,19 +152,20 @@ Sample response:
 
 ```json
 {
-  "datasetId": 1000325,
+  "datasetId": 1000517,
+  "datasetVersionId": 183,
   "name": "Heroku brand",
-  "status": "SUCCEEDED",
-  "progress": 1,
-  "createdAt": "2017-02-24T05:30:08.000+0000",
-  "updatedAt": "2017-02-24T05:31:36.000+0000",
+  "status": "RUNNING",
+  "progress": 0.67,
+  "createdAt": "2017-03-02T23:26:44.000+0000",
+  "updatedAt": "2017-03-02T23:27:54.000+0000",
   "learningRate": 0.001,
   "epochs": 3,
   "type": "image",
   "jobParams": null,
   "jobResults": null,
   "object": "training",
-  "modelId": "YXYLHLXO2XFBWCKNAXJFWA5LLM"
+  "modelId": "2PZ2U47YFR6P3NA2AZK2P7MW6Y"
 }
 ```
 
@@ -185,24 +191,29 @@ Sample response:
 {
   "metricsData": {
     "f1": [
-      1,1,1
+      0.9333333333333332,
+      0.9090909090909092,
+      0.8571428571428571,
+      0.9230769230769232
     ],
     "labels": [
-      "Heroku-logo",
-      "Heroku-artwork",
+      "Heroku Swag",
+      "Heroku Artwork",
+      "Heroku Logo",
       "unknown"
     ],
-    "testAccuracy": 1,
-    "trainingLoss": 0.0385,
+    "testAccuracy": 0.9189,
+    "trainingLoss": 0.3281,
     "confusionMatrix": [
-      [1,0,0],
-      [0,1,0],
-      [0,0,1]
+      [14, 0, 1, 1],
+      [ 0, 5, 0, 0],
+      [ 0, 0, 3, 0],
+      [ 0, 1, 0,12]
     ],
-    "trainingAccuracy": 0.9819
+    "trainingAccuracy": 0.8755
   },
-  "createdAt": "2017-02-24T05:31:35.000+0000",
-  "id": "YXYLHLXO2XFBWCKNAXJFWA5LLM",
+  "createdAt": "2017-03-02T23:28:18.000+0000",
+  "id": "2PZ2U47YFR6P3NA2AZK2P7MW6Y",
   "object": "metrics"
 }
 ```
@@ -214,6 +225,22 @@ Sample response:
 
 Once training is complete, the new model will answer queries about images by URL reference or direct upload.
 
+### Web UI queries
+
+Set your Heroku app to use this new model:
+
+```bash
+heroku config:set CUSTOM_MODEL_ID=$MODEL_ID
+```
+
+Then, open the web app in your browser to query with images:
+
+```bash
+heroku open
+```
+
+### Command-line queries
+
 We'll query with an image contained in this Github repo in `data/unseen/` which was not in the training dataset.
 
 ```bash
@@ -221,7 +248,6 @@ $ curl -X POST \
   -F "sampleContent=@./data/unseen/screen-shot-000.png" \
   -F "modelId=$MODEL_ID" \
   -H "Authorization: Bearer $TOKEN" \
-  -H "Cache-Control: no-cache" \
   -H "Content-Type: multipart/form-data" \
   https://api.metamind.io/v1/vision/predict
 ```
@@ -232,16 +258,20 @@ Sample response:
 {
   "probabilities": [
     {
-      "label": "Heroku-artwork",
-      "probability": 0.77794427
+      "label": "Heroku Artwork",
+      "probability": 0.53223926
     },
     {
       "label": "unknown",
-      "probability": 0.22203164
+      "probability": 0.46305126
     },
     {
-      "label": "Heroku-logo",
-      "probability": 2.4128907e-05
+      "label": "Heroku Swag",
+      "probability": 0.0038324401
+    },
+    {
+      "label": "Heroku Logo",
+      "probability": 0.0008770062
     }
   ],
   "object": "predictresponse"
