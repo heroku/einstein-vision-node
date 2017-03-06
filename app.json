@@ -11,7 +11,7 @@
     }
   },
   "addons":[
-    "cloudinary",
-    "einstein-vision"
+    "cloudinary:starter",
+    "einstein-vision:test"
   ]
 }
