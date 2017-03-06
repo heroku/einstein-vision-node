@@ -48,7 +48,7 @@ We'll use the Heroku brand example set hosted on S3.
 
 ```bash
 $ curl -X POST \
-  -F "path=https://einstein-vision.s3.amazonaws.com/heroku-recognizer/HerokuBrandDataset-002.zip" \
+  -F "path=https://einstein-vision.s3.amazonaws.com/heroku-recognizer/HerokuBrandDataset-006.zip" \
   -H "Authorization: Bearer $TOKEN" \
   https://api.metamind.io/v1/vision/datasets/upload/sync
 ```
