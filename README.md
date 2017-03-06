@@ -1,7 +1,6 @@
 # Einstein Vision<br/>Heroku Brand Recognition demo
 
-This is the sample app from the blog post [Introducing the Einstein Vision 
-Add-on for Image Recognition](https://blog.heroku.com).
+This is the sample app from the blog post [Introducing the Einstein Vision Add-on for Image Recognition](https://blog.heroku.com/einstein-vision-image-recognition).
 
 Demo deployment at [heroku-recognizer.herokuapp.com](https://heroku-recognizer.herokuapp.com).
 
