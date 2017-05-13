@@ -19,7 +19,7 @@
     "cloudinary": "^1.4.4",
     "connect-multiparty": "^2.0.0",
     "episode-7": "^1.1.0",
-    "express": "4.13.3",
+    "express": "^4.15.2",
     "form-data": "^2.1.1",
     "fs-promise": "^1.0.0",
     "fs-readfile-promise": "^3.0.0",
