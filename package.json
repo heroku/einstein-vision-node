@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Salesforce Einstein Vision demo in Node.js",
   "engines": {
-    "node": "6.9.1"
+    "node": "6.11.x"
   },
   "main": "index.js",
   "scripts": {
