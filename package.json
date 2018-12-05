@@ -16,17 +16,17 @@
     "react-ui/node_modules"
   ],
   "dependencies": {
-    "cloudinary": "^1.4.4",
+    "cloudinary": "^1.13.2",
     "connect-multiparty": "^2.0.0",
     "episode-7": "^1.1.0",
     "express": "^4.15.2",
     "form-data": "^2.1.1",
-    "fs-promise": "^1.0.0",
+    "fs-promise": "^2.0.3",
     "fs-readfile-promise": "^3.0.0",
-    "image-size": "^0.5.1",
-    "jsonwebtoken": "^7.1.9",
-    "mathjs": "^3.9.3",
-    "pify": "^2.3.0",
+    "image-size": "^0.6.3",
+    "jsonwebtoken": "^8.4.0",
+    "mathjs": "^5.3.1",
+    "pify": "^4.0.1",
     "request": "^2.78.0",
     "request-promise": "^4.1.1"
   },
@@ -44,10 +44,10 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.16.0",
-    "mock-fs": "^3.12.1",
-    "mountfs": "^0.4.2",
-    "rewire": "^2.5.2"
+    "ava": "^0.25.0",
+    "mock-fs": "^4.7.0",
+    "mountfs": "^0.5.0",
+    "rewire": "^4.0.1"
   },
   "ava": {
     "files": [
