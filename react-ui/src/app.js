@@ -24,7 +24,6 @@ class App extends Component {
     const response = this.state.uploadResponse;
     const predictions = (response && response.probabilities) || [];
 
-    console.log(file);
     return (
       <div>
         <div className="title">
@@ -110,7 +109,6 @@ class App extends Component {
       var req = superagent.post('/file-upload');
       acceptedFiles.forEach((file)=> {
         // Backend expects 'file' reference
-        console.log(file);
         req.attach('file', file, file.name);
       });
       req.end((err,res) => {
