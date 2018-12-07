@@ -46,7 +46,6 @@
   "devDependencies": {
     "ava": "^0.25.0",
     "mock-fs": "^4.7.0",
-    "mountfs": "^0.5.0",
     "rewire": "heroku/rewire#v4.0.3"
   },
   "ava": {

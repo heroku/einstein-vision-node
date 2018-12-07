@@ -86,7 +86,7 @@ h1 {
 
 .app .image-preview {
   position: relative;
-  /*transition: max-height 2s ease-in-out;*/
+  transition: max-height 2s ease-in-out;
   flex-grow:1;
 }
 .app .image-preview img {
