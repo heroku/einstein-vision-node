@@ -97,6 +97,7 @@ class App extends Component {
   }
 
   onDrop = (acceptedFiles, rejectedFiles) => {
+    acceptedFiles.map(file => Object.assign(file, {preview: URL.createObjectURL(file)}))
     if (acceptedFiles.length) {
       this.setState({
         isProcessing: true,

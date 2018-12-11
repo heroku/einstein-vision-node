@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './predictions.css';
 import { StaggeredMotion, spring } from 'react-motion';
+import PropTypes from 'prop-types';
 
 class Predictions extends Component {
   static propTypes = {
     // The Predictive Vision Predictions
-    contents: React.PropTypes.array.isRequired
+    contents: PropTypes.array.isRequired
   }
 
   render() {
