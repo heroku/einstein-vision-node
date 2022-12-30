@@ -44,7 +44,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "^5.1.0",
     "mock-fs": "^4.7.0",
     "rewire": "heroku/rewire#v4.0.3"
   },
